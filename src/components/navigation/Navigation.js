@@ -7,7 +7,7 @@ const Navigation = () => {
     return <header>
         <nav>
             <ul>
-                <li>
+                {/* <li>
                     <NavLink
                         to="/"
                         className={activeLink}
@@ -15,12 +15,15 @@ const Navigation = () => {
                     >
                         Home
                     </NavLink>
+                </li> */}
+                <li>
+                    <NavLink to="/artikli" className={activeLink} end>Products</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/products" className={activeLink} end>Products</NavLink>
+                    <NavLink to="/artikli/novi-artikal" className={activeLink} end>Novi Artikal</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/login" className={activeLink} end>Login</NavLink>
+                    <NavLink to="/prijava" className={activeLink} end>Login</NavLink>
                 </li>
             </ul>
         </nav>

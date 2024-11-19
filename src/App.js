@@ -3,6 +3,8 @@ import Wrapper from './pages/Wrapper'
 import HomePage from './pages/HomePage'
 import Products from './pages/Products'
 import ProductPage from './pages/ProductPage'
+import SaveProductPage from './pages/SaveProductPage'
+import EditProductPage from './pages/EditProductPage'
 import LoginPage from './pages/LoginPage'
 import NotFoundPage from './pages/NotFoundPage'
 
@@ -13,9 +15,11 @@ const router = createBrowserRouter([
     errorElement: <NotFoundPage />,
     children: [
       { path: '/', element: <HomePage /> },
-      { path: '/products', element: <Products /> },
-      { path: '/products/:id', element: <ProductPage /> },
-      {path: '/login', element: <LoginPage />},
+      { path: '/artikli', element: <Products /> },
+      { path: '/artikli/novi-artikal', element: <SaveProductPage /> },
+      { path: '/artikli/:id', element: <ProductPage /> },
+      { path: '/artikli/:id/promijeni', element: <EditProductPage /> },
+      { path: '/prijava', element: <LoginPage /> },
     ]
   },
   
