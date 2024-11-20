@@ -8,21 +8,18 @@ const SaveProductPage = () => {
 
     const submitHandler = async e => {
         e.preventDefault()
-        const { title, price, description, category } = formData.current
-        const body = {
-            title: title.value,
-            description: description.value,
-            price: price.value,
-            category: category.value
-        }
+        const { title, image, price, description, category } = formData.current
+
+        const data = new FormData()
+        data.append('title', title.value)
+        data.append('image', image.files[0])
+        data.append('price', price.value)
+        data.append('description', description.value)
+        data.append('category', category.value)
 
         const result = await fetch('http://localhost:3001/admin/product', {
             method: 'POST', 
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
+            body: data
         })
 
         if (result.status !== 200 && result.status !== 201) {
@@ -43,6 +40,9 @@ const SaveProductPage = () => {
             <form onSubmit={submitHandler} method="post" ref={formData}>
                 <label htmlFor="title">Naziv artikla:</label><br></br>
                 <input id="title" name="title" type="text" /><br></br>
+                <br></br>
+                <label htmlFor="image">Postavi sliku:</label><br></br>
+                <input type="file" id="image" name="image"  accept="image/*" /><br></br>
                 <br></br>
                 <label htmlFor="description">Opis:</label><br></br>
                 <textarea id="description" name="description" type="text"></textarea><br></br>
