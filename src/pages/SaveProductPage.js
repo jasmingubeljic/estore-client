@@ -1,5 +1,7 @@
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { createProduct } from '../api/apiCalls'
+import { apiUrl } from '../appInfo'
 
 const SaveProductPage = () => {
     const navigate = useNavigate()
@@ -7,31 +9,18 @@ const SaveProductPage = () => {
     const formData = useRef()
 
     const submitHandler = async e => {
-        e.preventDefault()
-        const { title, image, price, description, category } = formData.current
-
-        const data = new FormData()
-        data.append('title', title.value)
-        data.append('image', image.files[0])
-        data.append('price', price.value)
-        data.append('description', description.value)
-        data.append('category', category.value)
-
-        const result = await fetch('http://localhost:3001/admin/product', {
-            method: 'POST', 
-            body: data
-        })
-
-        if (result.status !== 200 && result.status !== 201) {
-            const resData = await result.json()
-            if(resData.messages) {
-                setErrors(resData.messages.errors)
-            } else {
-                setErrors([])
+        e.preventDefault()    
+        createProduct(
+            formData.current,
+            resData => {
+                console.log("resData: ", resData)
+                
+            },
+            err => {
+                console.log('err', err)
+                setErrors(err.messages.errors)
             }
-        } else {
-            navigate('/artikli')
-        }
+        )
     }
 
     return (
@@ -54,7 +43,7 @@ const SaveProductPage = () => {
                 <input id="category" name="category" type="text" /><br></br>
                 <br></br>
                 <button type="submit">Objavi</button>
-                {errors.map(err => <p>{err.msg}</p>) }
+                {errors && errors.map(err => <p key={err.msg}>{err.msg}</p>) }
             </form>
         </>
     )

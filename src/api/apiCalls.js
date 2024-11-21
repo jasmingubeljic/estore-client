@@ -1,13 +1,10 @@
-// here we will define all apis for the app
-export const getApiUrl = () => {
-  return 'http://localhost:3001'
-};
+import { apiUrl } from '../appInfo'
 
 export const logIn = async (email, password, onSuccess, onError) => {   
     const data = { email, password }
     try {
         let q = '/login'
-        const response = await fetch(getApiUrl()+q, {
+        const response = await fetch(apiUrl+q, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -29,24 +26,52 @@ export const logIn = async (email, password, onSuccess, onError) => {
 }
 
 export const createProduct = async (productData, onSuccess, onError) => {   
-    const data = JSON.stringify(productData)
+    const { title, image, price, description, category } = productData
+        
+        const data = new FormData()
+        data.append('title', title.value)
+        data.append('image', image.files[0])
+        data.append('price', price.value)
+        data.append('description', description.value)
+        data.append('category', category.value)
+        
     try {
-        let q = '/admin/create-product'
-        const response = await fetch(getApiUrl()+q, {
+        let q = '/admin/product'
+        const response = await fetch(apiUrl+q, {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                // 'Authorization': user.signInUserSession.idToken.jwtToken,
-            },
-            body: JSON.stringify(data)
+            body: data
         });
-        console.log('does this run?')
         const r = await response.json();
         if (response.ok) {
-            onSuccess(r.resource);
+            onSuccess(r);
         } else {
-            onError(response);
+            onError(r);
+        }
+    } catch (error) {
+        onError(error);
+    }
+}
+export const updateProductById = async (id, productData, onSuccess, onError) => {   
+    const { title, image, price, description, category } = productData
+        
+        const data = new FormData()
+        data.append('title', title.value)
+        data.append('image', image.files[0])
+        data.append('price', price.value)
+        data.append('description', description.value)
+        data.append('category', category.value)
+        
+    try {
+        let q = '/admin/product/'+id
+        const response = await fetch(apiUrl+q, {
+            method: 'PUT',
+            body: data
+        });
+        const r = await response.json();
+        if (response.ok) {
+            onSuccess(r);
+        } else {
+            onError(r);
         }
     } catch (error) {
         onError(error);
@@ -56,7 +81,7 @@ export const createProduct = async (productData, onSuccess, onError) => {
 export const getProducts = async (onSuccess, onError) => {   
     try {
         let q = '/product'
-        const response = await fetch(getApiUrl()+q, {
+        const response = await fetch(apiUrl+q, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -79,7 +104,7 @@ export const getProductById = async (id, onSuccess, onError) => {
     try {
         let q = '/product/' + id
         
-        const response = await fetch(getApiUrl() + q, {
+        const response = await fetch(apiUrl + q, {
             method: 'GET', 
             headers: {
                 'Accept': 'application/json',
@@ -102,7 +127,7 @@ export const getProductById = async (id, onSuccess, onError) => {
 export const deleteProduct = async (product, onSuccess, onError) => {
     try {
         let q = '/admin/product'
-        const response = await fetch(getApiUrl() + q, {
+        const response = await fetch(apiUrl + q, {
             method: 'DELETE', 
             headers: {
                 'Accept': 'application/json',
