@@ -124,9 +124,9 @@ export const getProductById = async (id, onSuccess, onError) => {
     }
 }
 
-export const deleteProduct = async (product, onSuccess, onError) => {
+export const deleteProduct = async (id, product, onSuccess, onError) => {
     try {
-        let q = '/admin/product'
+        let q = `/admin/product/${id}`
         const response = await fetch(apiUrl + q, {
             method: 'DELETE', 
             headers: {

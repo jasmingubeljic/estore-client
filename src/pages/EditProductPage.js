@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from "react-router-dom"
 import { getProductById, updateProductById } from '../api/apiCalls'
-import { appInfo } from '../appInfo'
+import { apiUrl } from '../appInfo'
 
 const EditProductPage = () => {
     const formData = useRef()
@@ -35,7 +35,7 @@ const EditProductPage = () => {
     if(product) {
         return (
             <>
-                <h1>Product {params.id} </h1>
+                <h1>{product.title} </h1>
                 <form onSubmit={submitHandler} method="post" ref={formData}>
                     <label htmlFor="title">Naziv artikla:</label><br></br>
                     <input id="title" name="title" type="text" defaultValue={product.title}  /><br></br>
@@ -43,7 +43,7 @@ const EditProductPage = () => {
                     <label htmlFor="image">Postavi sliku:</label><br></br>
                     <input type="file" id="image" name="image"  accept="image/*" /><br></br>
                     <br></br>
-                    <img src={appInfo.serverUrl+'/'+product.imageUrl} alt={product.title} width="100" /> 
+                    <img src={apiUrl+'/'+product.imageUrl} alt={product.title} width="100" /> 
                     <br></br>
                     <label htmlFor="description">Opis:</label><br></br>
                     <textarea id="description" name="description" type="text" defaultValue={product.description}></textarea><br></br>

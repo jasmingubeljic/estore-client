@@ -18,7 +18,7 @@ const ProductPage = () => {
     }
 
     const onProductDelete = () => {
-        deleteProduct(product, navigate('/artikli'), err => console.log(err))
+        deleteProduct(params.id, product, navigate('/artikli'), err => console.log(err))
     }
 
     if(product) {
