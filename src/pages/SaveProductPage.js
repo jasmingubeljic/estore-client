@@ -14,6 +14,7 @@ const SaveProductPage = () => {
             formData.current,
             resData => {
                 console.log("resData: ", resData)
+                navigate('/artikli')
                 
             },
             err => {

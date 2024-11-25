@@ -28,17 +28,20 @@ export const logIn = async (email, password, onSuccess, onError) => {
 export const createProduct = async (productData, onSuccess, onError) => {   
     const { title, image, price, description, category } = productData
         
-        const data = new FormData()
-        data.append('title', title.value)
-        data.append('image', image.files[0])
-        data.append('price', price.value)
-        data.append('description', description.value)
-        data.append('category', category.value)
+    const data = new FormData()
+    data.append('title', title.value)
+    data.append('image', image.files[0])
+    data.append('price', price.value)
+    data.append('description', description.value)
+    data.append('category', category.value)
         
     try {
         let q = '/admin/product'
         const response = await fetch(apiUrl+q, {
             method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('userAndToken')).token}`
+            },
             body: data
         });
         const r = await response.json();
@@ -65,6 +68,9 @@ export const updateProductById = async (id, productData, onSuccess, onError) => 
         let q = '/admin/product/'+id
         const response = await fetch(apiUrl+q, {
             method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('userAndToken')).token}`
+            },
             body: data
         });
         const r = await response.json();
@@ -131,7 +137,8 @@ export const deleteProduct = async (id, product, onSuccess, onError) => {
             method: 'DELETE', 
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('userAndToken')).token}`
             },
             body: JSON.stringify(product)
         });
@@ -144,6 +151,6 @@ export const deleteProduct = async (id, product, onSuccess, onError) => {
         }
 
     } catch (error) {
-        onError(error)
+            onError(error)
     }
 }
