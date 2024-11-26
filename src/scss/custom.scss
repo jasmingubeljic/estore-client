@@ -1,0 +1,24 @@
+/* make the customizations */
+$body-bg: #e0cbcb;
+$body-color: #b98f8f;
+
+$theme-colors: (
+    'info': rgb(6, 172, 108),
+    'danger': teal,
+    'primary': red,
+    'secondary': yellow,
+    'tertiary': blue,
+    'light': red,
+    'dark': blue,
+    'success': green,
+    'warning': orange,
+    'border': gray,
+);  
+
+
+$custom-colors: (
+    "custom-color": #900
+);
+
+/* import bootstrap to set changes */
+@import '~bootstrap/scss/bootstrap';
