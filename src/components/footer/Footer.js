@@ -3,15 +3,9 @@
 const Footer = () => {
 
     return (
-        <>
-            <footer>
-                <br></br>
-                <br></br>
-                <br></br>
-                <hr></hr>
-                <p>Footer component</p>
-            </footer>
-        </>
+        <footer className="bg-violet-200 p-5">
+            <p>Footer component</p>
+        </footer>
     )
 }
 

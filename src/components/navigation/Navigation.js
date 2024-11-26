@@ -4,9 +4,9 @@ import classes from './Navigation.module.css'
 const Navigation = () => {
     const activeLink = ({ isActive }) => isActive ? classes.isActive : undefined
 
-    return <header>
+    return <header className="w-full bg-purple">
         <nav>
-            <ul>
+            <ul className="flex justify-center gap-5 p-5">
                 {/* <li>
                     <NavLink
                         to="/"

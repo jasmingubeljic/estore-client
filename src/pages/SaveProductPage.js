@@ -43,7 +43,7 @@ const SaveProductPage = () => {
                 <label htmlFor="category">Kategorija:</label><br></br>
                 <input id="category" name="category" type="text" /><br></br>
                 <br></br>
-                <button type="submit">Objavi</button>
+                <button type="submit" className="p-3 transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-100">Objavi</button>
                 {errors && errors.map(err => <p key={err.msg}>{err.msg}</p>) }
             </form>
         </>

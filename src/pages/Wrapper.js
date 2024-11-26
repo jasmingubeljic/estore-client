@@ -3,11 +3,13 @@ import Navigation from '../components/navigation/Navigation'
 import Footer from '../components/footer/Footer'
 
 const Wrapper = () => {
-    return <>
-        <Navigation />
-        <Outlet />
-        <Footer />
-    </>
+    return (
+        <div>
+            <Navigation />
+            <Outlet />
+            <Footer />
+        </div>
+    )
 }
 
 export default Wrapper

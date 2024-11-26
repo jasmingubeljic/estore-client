@@ -16,7 +16,7 @@ const Products = () => {
 
     return (
         <>
-            <h1>Products: </h1>
+            <h1 className="text-red">Products: </h1>
             <ul>
                 {products.map(prod => (
                         <li key={prod.id}><Link to={`/artikli/${prod.id}`}>{prod.title}</Link></li>
