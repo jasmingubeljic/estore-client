@@ -43,7 +43,12 @@ const Navigation = () => {
   //     </header>
   //   );
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      className="bg-body-tertiary mb-3"
+      sticky="top"
+    >
       <Container>
         <Navbar.Brand onClick={() => navigate("/")}>Edo Shop</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
