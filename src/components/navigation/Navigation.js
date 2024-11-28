@@ -7,41 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 
 const Navigation = () => {
   const navigate = useNavigate();
-  const activeLink = ({ isActive }) =>
-    isActive ? classes.isActive : undefined;
 
-  //   return (
-  //     <header>
-  //       <nav>
-  //         <ul className="d-flex gap-5 p-5">
-  //           {/* <li>
-  //                   <NavLink
-  //                       to="/"
-  //                       className={activeLink}
-  //                       end
-  //                   >
-  //                       Home
-  //                   </NavLink>
-  //               </li> */}
-  //           <li>
-  //             <NavLink to="/artikli" className={activeLink} end>
-  //               Products
-  //             </NavLink>
-  //           </li>
-  //           <li>
-  //             <NavLink to="/artikli/novi-artikal" className={activeLink} end>
-  //               Novi Artikal
-  //             </NavLink>
-  //           </li>
-  //           <li>
-  //             <NavLink to="/prijava" className={activeLink} end>
-  //               Login
-  //             </NavLink>
-  //           </li>
-  //         </ul>
-  //       </nav>
-  //     </header>
-  //   );
   return (
     <Navbar
       collapseOnSelect

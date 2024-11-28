@@ -2,8 +2,8 @@ import { render, screen } from "@testing-library/react";
 import Navigation from "../navigation/Navigation";
 import { BrowserRouter as Router } from "react-router-dom";
 
-describe("navigation links", () => {
-  test("constins text: Edo shop", () => {
+describe("navigation component", () => {
+  test("has text: Edo shop", () => {
     render(
       <Router>
         <Navigation />
@@ -13,7 +13,7 @@ describe("navigation links", () => {
     expect(linkElement).toBeDefined();
   });
 
-  test("constins text: Artikli", () => {
+  test("has text: Artikli", () => {
     render(
       <Router>
         <Navigation />
@@ -23,13 +23,13 @@ describe("navigation links", () => {
     expect(linkElement).toBeDefined();
   });
 
-  test("constins text: Objavi artikal", () => {
+  test("has text: Objavi artikal", () => {
     render(
       <Router>
         <Navigation />
       </Router>
     );
-    const linkElement = screen.getByText("Prijavi se");
+    const linkElement = screen.getByText("Objavi artikal");
     expect(linkElement).toBeDefined();
   });
 

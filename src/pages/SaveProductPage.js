@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createProduct } from "../api/apiCalls";
 import { apiUrl } from "../appInfo";
 import Container from "react-bootstrap/Container";
+import EditProductForm from "../components/forms/EditProductForm";
 
 const SaveProductPage = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const SaveProductPage = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    console.log("e.target", e.target);
     createProduct(
       formData.current,
       (resData) => {
@@ -26,7 +28,7 @@ const SaveProductPage = () => {
 
   return (
     <Container>
-      <h1>Objavi novi artikal</h1>
+      {/* <h1>Objavi novi artikal</h1>
       <form onSubmit={submitHandler} method="post" ref={formData}>
         <label htmlFor="title">Naziv artikla:</label>
         <br></br>
@@ -60,7 +62,8 @@ const SaveProductPage = () => {
           Objavi
         </button>
         {errors && errors.map((err) => <p key={err.msg}>{err.msg}</p>)}
-      </form>
+      </form> */}
+      <EditProductForm onSubmit={submitHandler} />
     </Container>
   );
 };

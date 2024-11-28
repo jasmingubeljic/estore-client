@@ -1,5 +1,4 @@
-import { logIn } from "../api/apiCalls";
-import LoginForm from "../components/login-form/LoginForm";
+import LoginForm from "../components/forms/LoginForm";
 import Container from "react-bootstrap/Container";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -38,6 +37,7 @@ const LoginPage = () => {
   return (
     <Container>
       <LoginForm onSubmit={submitHandler} />
+      {errors.map((e) => e)}
     </Container>
   );
 };
