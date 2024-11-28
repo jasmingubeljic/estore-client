@@ -54,7 +54,7 @@ const Navigation = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link onClick={() => navigate("/artikli")}>Products</Nav.Link>
+            <Nav.Link onClick={() => navigate("/artikli")}>Artikli</Nav.Link>
             <NavDropdown title="Kategorije" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">
                 Kategorija 1
