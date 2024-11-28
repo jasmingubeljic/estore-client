@@ -1,24 +1,22 @@
-import { useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Image from "react-bootstrap/Image";
 import styles from "./EditProductForm.module.scss";
 
 const EditProductForm = (props) => {
-  const imgPreview = useRef();
+  const [imgSrc, setImgSrc] = useState("");
 
-  const onImageSelect = async (e) => {
-    console.log("e: ");
+  const onImageSelect = useCallback(async (e) => {
     const files = e.target.files[0];
     if (files) {
       const fileReader = new FileReader();
-      const fileReaderObj = await fileReader.readAsDataURL(files);
-
+      fileReader.readAsDataURL(files);
       fileReader.addEventListener("load", function () {
-        imgPreview.current.style.display = "block";
-        imgPreview.current.innerHTML = `<img src="${this.result}" class=${styles.imgPreview} />`;
+        setImgSrc(this.result);
       });
     }
-  };
+  }, []);
 
   return (
     <>
@@ -27,14 +25,13 @@ const EditProductForm = (props) => {
           <Form.Label>Naziv artikla</Form.Label>
           <Form.Control name="title" type="title" placeholder="Naziv artikla" />
         </Form.Group>
-        <div ref={imgPreview}></div>
+        <Image src={imgSrc} className={styles.imgPreview} />
         <Form.Group className="mb-3" controlId="formProductImage">
           <Form.Label>Slika artikla</Form.Label>
           <Form.Control
             name="image"
             type="file"
             accept="image/*"
-            id="choose-file"
             placeholder="Slika artikla"
             onChange={onImageSelect}
           />
