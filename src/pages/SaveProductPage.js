@@ -18,7 +18,10 @@ const SaveProductPage = () => {
         navigate("/artikli");
       },
       (err) => {
-        console.log("err", err);
+        console.log(err);
+        if (err.err.name === "TokenExpiredError") {
+          return navigate("/prijava");
+        }
         setErrors(err.messages.errors);
       }
     );

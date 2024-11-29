@@ -32,7 +32,10 @@ const EditProductPage = () => {
         navigate(`/artikli/${success.id}`);
       },
       (err) => {
-        console.log("failed: ", err);
+        console.log(err);
+        if (err.err.name === "TokenExpiredError") {
+          return navigate("/prijava");
+        }
       }
     );
   };
