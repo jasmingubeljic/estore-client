@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getProductById, deleteProduct } from "../api/apiCalls";
 import { apiUrl } from "../appInfo";
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import Stack from "react-bootstrap/Stack";
 
 const ProductPage = () => {
   const [product, setProduct] = useState();
@@ -26,7 +28,7 @@ const ProductPage = () => {
 
   if (product) {
     return (
-      <Container>
+      <Container className="h-100">
         <h1>{product.title} </h1>
         <img
           src={apiUrl + "/" + product.imageUrl}
@@ -38,14 +40,26 @@ const ProductPage = () => {
           <li>{product.price}</li>
           <li>{product.category}</li>
         </ul>
-        <button
+        {/* <button
           onClick={() => {
             navigate("/artikli/" + params.id + "/promijeni");
           }}
         >
           Promijeni
-        </button>
-        <button onClick={onProductDelete}>Delete</button>
+        </button> */}
+        <Stack direction="horizontal" gap={3}>
+          <Button
+            variant="primary"
+            onClick={() => {
+              navigate("/artikli/" + params.id + "/promijeni");
+            }}
+          >
+            Promijeni
+          </Button>
+          <Button variant="danger" onClick={onProductDelete}>
+            Delete
+          </Button>
+        </Stack>
       </Container>
     );
   }

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getProductById, updateProductById } from "../api/apiCalls";
+import Container from "react-bootstrap/Container";
 import EditProductForm from "../components/forms/EditProductForm";
 import Loader from "../components/loader/Loader";
 
@@ -38,10 +39,10 @@ const EditProductPage = () => {
 
   if (product) {
     return (
-      <>
+      <Container>
         <h1>{product.title}</h1>
         <EditProductForm onSubmit={submitHandler} product={product} />
-      </>
+      </Container>
     );
   } else {
     return <Loader />;

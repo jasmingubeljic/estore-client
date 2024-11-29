@@ -3,17 +3,17 @@
 // $body-color: #b98f8f;
 
 $theme-colors: (
-    'info': rgb(6, 172, 108),
-    'danger': teal,
-    'primary': red,
-    'secondary': yellow,
-    'tertiary': blue,
-    'light': red,
-    'dark': blue,
+    'info': rgb(155, 155, 155),
+    'danger': rgb(255, 87, 87),
+    'primary': teal,
+    'secondary': rgb(238, 160, 136),
+    'tertiary': rgba(241, 95, 180, 0.911),
+    'light': rgb(206, 193, 193),
+    'dark': rgb(12, 12, 56),
     'success': green,
     'warning': orange,
     'border': gray,
-    'link': purple
+    'link': rgb(57, 18, 163)
 );  
 
 
