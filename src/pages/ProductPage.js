@@ -56,7 +56,7 @@ const ProductPage = () => {
           >
             Promijeni
           </Button>
-          <Button variant="danger" onClick={onProductDelete}>
+          <Button variant="outline-danger" onClick={onProductDelete}>
             Delete
           </Button>
         </Stack>
