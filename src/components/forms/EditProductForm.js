@@ -41,12 +41,12 @@ const EditProductForm = (props) => {
           <Form.Control
             name="description"
             type="description"
-            placeholder="Naziv artikla"
+            placeholder="Opisi artikal"
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formProductPrice">
           <Form.Label>Cijena</Form.Label>
-          <Form.Control name="price" type="price" placeholder="Cijena" />
+          <Form.Control name="price" type="number" placeholder="Cijena" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formProductCategory">
           <Form.Label>Kategorija</Form.Label>
@@ -54,15 +54,6 @@ const EditProductForm = (props) => {
             name="category"
             type="category"
             placeholder="Kategorija"
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            name="password"
-            type="password"
-            placeholder="Password"
           />
         </Form.Group>
 

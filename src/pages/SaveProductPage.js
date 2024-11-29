@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createProduct } from "../api/apiCalls";
 import { apiUrl } from "../appInfo";
@@ -8,13 +8,11 @@ import EditProductForm from "../components/forms/EditProductForm";
 const SaveProductPage = () => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
-  const formData = useRef();
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("e.target", e.target);
     createProduct(
-      formData.current,
+      e.target,
       (resData) => {
         console.log("resData: ", resData);
         navigate("/artikli");
