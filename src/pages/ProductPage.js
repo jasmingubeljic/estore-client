@@ -56,8 +56,8 @@ const ProductPage = () => {
           >
             Promijeni
           </Button>
-          <Button variant="outline-danger" onClick={onProductDelete}>
-            Delete
+          <Button variant="danger" onClick={onProductDelete}>
+            Izbriši
           </Button>
         </Stack>
       </Container>

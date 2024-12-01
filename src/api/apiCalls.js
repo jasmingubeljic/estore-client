@@ -26,14 +26,18 @@ export const logIn = async (email, password, onSuccess, onError) => {
 };
 
 export const createProduct = async (productForm, onSuccess, onError) => {
-  const { title, image, price, description, category } = productForm;
+  const { title, image, price, isNew, description, category, isHidden } =
+    productForm;
   const formData = new FormData();
   formData.append("title", title.value);
   formData.append("image", image.files[0]);
   formData.append("price", price.value);
+  formData.append("isNew", isNew.checked);
   formData.append("description", description.value);
   formData.append("category", category.value);
+  formData.append("isHidden", isHidden.checked);
 
+  return console.log("formData: ", formData);
   try {
     let q = "/admin/product";
     const response = await fetch(apiUrl + q, {
@@ -61,14 +65,17 @@ export const updateProductById = async (
   onSuccess,
   onError
 ) => {
-  const { title, image, price, description, category } = productData;
+  const { title, image, price, isNew, description, category, isHidden } =
+    productData;
 
   const data = new FormData();
   data.append("title", title.value);
   data.append("image", image.files[0]);
   data.append("price", price.value);
+  data.append("isNew", isNew.checked);
   data.append("description", description.value);
   data.append("category", category.value);
+  data.append("isHidden", isHidden.checked);
 
   try {
     let q = "/admin/product/" + id;

@@ -1,13 +1,18 @@
 import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
+import Stack from "react-bootstrap/Stack";
 import styles from "./EditProductForm.module.scss";
 import { apiUrl } from "../../appInfo";
 
 const EditProductForm = (props) => {
   const [imgSrc, setImgSrc] = useState("");
   const [validated, setValidated] = useState(false);
+
+  const navigate = useNavigate();
+
   const product = props.product || {
     title: "",
     description: "",
@@ -21,12 +26,6 @@ const EditProductForm = (props) => {
       setImgSrc(apiUrl + "/" + props.product.imageUrl);
     }
   }, [props.product]);
-
-  useEffect(() => {
-    console.log("validated: ", validated);
-  }, [validated]);
-
-  console.log("product.image", product);
 
   const onImageSelect = useCallback(async (e) => {
     const files = e.target.files[0];
@@ -57,6 +56,8 @@ const EditProductForm = (props) => {
       ) {
         if (props.product?.imageUrl || form.image.files.length !== 0) {
           props.onSubmit(event);
+        } else {
+          console.info("product update/creation stopped");
         }
       }
     }
@@ -65,62 +66,94 @@ const EditProductForm = (props) => {
   return (
     <>
       <Form noValidate validated={validated} onSubmit={onSubmit} method="POST">
-        <Form.Group className="mb-3" controlId="formProductTitle">
+        <Form.Group className="mb-4" controlId="formProductTitle">
           <Form.Label>Naziv artikla</Form.Label>
           <Form.Control
             name="title"
             type="title"
-            placeholder="Naziv artikla"
+            // placeholder="Naziv artikla"
             required
             defaultValue={product.title}
           />
         </Form.Group>
         <Image src={imgSrc} className={styles.imgPreview} />
-        <Form.Group className="mb-3" controlId="formProductImage">
+        <Form.Group className="mb-4" controlId="formProductImage">
           <Form.Label>Slika artikla</Form.Label>
           <Form.Control
             name="image"
             type="file"
             accept="image/*"
             required={!product.title}
-            placeholder="Slika artikla"
             onChange={onImageSelect}
           />
+          <Form.Text className="text-muted">
+            Formati slike koje je moguće postaviti: JPG, PNG i GIF.
+          </Form.Text>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formProductDescription">
+        <Form.Group className="mb-4" controlId="formProductDescription">
           <Form.Label>Opis</Form.Label>
           <Form.Control
             name="description"
-            type="description"
-            required
-            placeholder="Opisi artikal"
+            as="textarea"
+            // placeholder="Opisi artikal"
             defaultValue={product.description}
+            style={{ height: "100px" }}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formProductPrice">
+        <Form.Group className="mb-4" controlId="formProductPrice">
           <Form.Label>Cijena</Form.Label>
           <Form.Control
             name="price"
             type="number"
             required
-            placeholder="Cijena"
+            // placeholder="Cijena"
             defaultValue={product.price}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formProductCategory">
+        <Form.Group className="mb-4">
+          <Form.Label>Stanje</Form.Label>
+          <Form.Check
+            aria-label="isNew"
+            label="Novo"
+            name="isNew"
+            type="checkbox"
+            defaultChecked={false}
+          />
+        </Form.Group>
+        <Form.Group className="mb-4" controlId="formProductCategory">
           <Form.Label>Kategorija</Form.Label>
           <Form.Control
             name="category"
             type="category"
             required
-            placeholder="Kategorija"
+            // placeholder="Kategorija"
             defaultValue={product.category}
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <Form.Group className="mb-4">
+          {/* <Form.Label>Objavljen</Form.Label> */}
+          <Form.Check
+            aria-label="isProductNew"
+            label="Skriven"
+            name="isHidden"
+            type="checkbox"
+            defaultChecked={false}
+          />
+          <Form.Text className="text-muted">
+            Ukoliko je proizvod skriven, nece biti vidljiv korisnicima na
+            stranici.
+          </Form.Text>
+        </Form.Group>
+
+        <Stack direction="horizontal" gap={3}>
+          <Button variant="primary" type="submit">
+            Spasi
+          </Button>
+          <Button variant="outline-warning" onClick={() => navigate(-1)}>
+            Otkaži
+          </Button>
+        </Stack>
       </Form>
     </>
   );
