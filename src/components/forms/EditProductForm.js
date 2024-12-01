@@ -7,6 +7,7 @@ import { apiUrl } from "../../appInfo";
 
 const EditProductForm = (props) => {
   const [imgSrc, setImgSrc] = useState("");
+  const [validated, setValidated] = useState(false);
   const product = props.product || {
     title: "",
     description: "",
@@ -21,6 +22,10 @@ const EditProductForm = (props) => {
     }
   }, [props.product]);
 
+  useEffect(() => {
+    console.log("validated: ", validated);
+  }, [validated]);
+
   console.log("product.image", product);
 
   const onImageSelect = useCallback(async (e) => {
@@ -34,15 +39,39 @@ const EditProductForm = (props) => {
     }
   }, []);
 
+  const onSubmit = useCallback((event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+
+    if (form) {
+      if (
+        form.title.value &&
+        form.description.value &&
+        form.price.value &&
+        form.category.value
+      ) {
+        if (props.product?.imageUrl || form.image.files.length !== 0) {
+          props.onSubmit(event);
+        }
+      }
+    }
+  }, []);
+
   return (
     <>
-      <Form onSubmit={props.onSubmit} method="POST">
+      <Form noValidate validated={validated} onSubmit={onSubmit} method="POST">
         <Form.Group className="mb-3" controlId="formProductTitle">
           <Form.Label>Naziv artikla</Form.Label>
           <Form.Control
             name="title"
             type="title"
             placeholder="Naziv artikla"
+            required
             defaultValue={product.title}
           />
         </Form.Group>
@@ -53,6 +82,7 @@ const EditProductForm = (props) => {
             name="image"
             type="file"
             accept="image/*"
+            required={!product.title}
             placeholder="Slika artikla"
             onChange={onImageSelect}
           />
@@ -62,6 +92,7 @@ const EditProductForm = (props) => {
           <Form.Control
             name="description"
             type="description"
+            required
             placeholder="Opisi artikal"
             defaultValue={product.description}
           />
@@ -71,6 +102,7 @@ const EditProductForm = (props) => {
           <Form.Control
             name="price"
             type="number"
+            required
             placeholder="Cijena"
             defaultValue={product.price}
           />
@@ -80,6 +112,7 @@ const EditProductForm = (props) => {
           <Form.Control
             name="category"
             type="category"
+            required
             placeholder="Kategorija"
             defaultValue={product.category}
           />
