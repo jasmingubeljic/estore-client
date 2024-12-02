@@ -1,5 +1,7 @@
 import LoginForm from "../components/forms/LoginForm";
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiUrl } from "../appInfo";
@@ -36,8 +38,13 @@ const LoginPage = () => {
 
   return (
     <Container>
-      <LoginForm onSubmit={submitHandler} />
-      {errors.map((e) => e)}
+      <Row>
+        <Col xs={12} sm={6} md={4}>
+          {" "}
+          <LoginForm onSubmit={submitHandler} />
+          {errors.map((e) => e)}
+        </Col>
+      </Row>
     </Container>
   );
 };

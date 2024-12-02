@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getProductById, updateProductById } from "../api/apiCalls";
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import EditProductForm from "../components/forms/EditProductForm";
 import Loader from "../components/loader/Loader";
 
@@ -43,8 +45,12 @@ const EditProductPage = () => {
   if (product) {
     return (
       <Container>
-        <h1>{product.title}</h1>
-        <EditProductForm onSubmit={submitHandler} product={product} />
+        <Row>
+          <Col xs={12} sm={6}>
+            <h1>{product.title}</h1>
+            <EditProductForm onSubmit={submitHandler} product={product} />
+          </Col>
+        </Row>
       </Container>
     );
   } else {
