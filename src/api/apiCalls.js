@@ -37,7 +37,6 @@ export const createProduct = async (productForm, onSuccess, onError) => {
   formData.append("category", category.value);
   formData.append("isHidden", isHidden.checked);
 
-  return console.log("formData: ", formData);
   try {
     let q = "/admin/product";
     const response = await fetch(apiUrl + q, {
