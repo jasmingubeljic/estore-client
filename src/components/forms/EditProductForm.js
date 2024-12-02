@@ -18,6 +18,8 @@ const EditProductForm = (props) => {
     description: "",
     price: "",
     category: "",
+    isUsed: "false",
+    isHidden: "false"
   };
 
   useEffect(() => {
@@ -113,11 +115,11 @@ const EditProductForm = (props) => {
         <Form.Group className="mb-4">
           <Form.Label>Stanje</Form.Label>
           <Form.Check
-            aria-label="isNew"
-            label="Novo"
-            name="isNew"
+            aria-label="isUsed"
+            label="Polovan"
+            name="isUsed"
             type="checkbox"
-            defaultChecked={false}
+            defaultChecked={product.isUsed}
           />
         </Form.Group>
         <Form.Group className="mb-4" controlId="formProductCategory">
@@ -134,15 +136,14 @@ const EditProductForm = (props) => {
         <Form.Group className="mb-4">
           {/* <Form.Label>Objavljen</Form.Label> */}
           <Form.Check
-            aria-label="isProductNew"
+            aria-label="isHidden"
             label="Skriven"
             name="isHidden"
             type="checkbox"
-            defaultChecked={false}
+            defaultChecked={product.isHidden}
           />
           <Form.Text className="text-muted">
-            Ukoliko je proizvod skriven, nece biti vidljiv korisnicima na
-            stranici.
+            Skriven artikal nece biti vidljiv korisnicima na stranici.
           </Form.Text>
         </Form.Group>
 

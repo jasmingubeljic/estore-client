@@ -26,13 +26,13 @@ export const logIn = async (email, password, onSuccess, onError) => {
 };
 
 export const createProduct = async (productForm, onSuccess, onError) => {
-  const { title, image, price, isNew, description, category, isHidden } =
+  const { title, image, price, isUsed, description, category, isHidden } =
     productForm;
   const formData = new FormData();
   formData.append("title", title.value);
   formData.append("image", image.files[0]);
   formData.append("price", price.value);
-  formData.append("isNew", isNew.checked);
+  formData.append("isUsed", isUsed.checked);
   formData.append("description", description.value);
   formData.append("category", category.value);
   formData.append("isHidden", isHidden.checked);
@@ -58,20 +58,21 @@ export const createProduct = async (productForm, onSuccess, onError) => {
     onError(error);
   }
 };
+
 export const updateProductById = async (
   id,
   productData,
   onSuccess,
   onError
 ) => {
-  const { title, image, price, isNew, description, category, isHidden } =
+  const { title, image, price, isUsed, description, category, isHidden } =
     productData;
 
   const data = new FormData();
   data.append("title", title.value);
   data.append("image", image.files[0]);
   data.append("price", price.value);
-  data.append("isNew", isNew.checked);
+  data.append("isUsed", isUsed.checked);
   data.append("description", description.value);
   data.append("category", category.value);
   data.append("isHidden", isHidden.checked);
