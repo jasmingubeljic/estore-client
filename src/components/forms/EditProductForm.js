@@ -18,8 +18,8 @@ const EditProductForm = (props) => {
     description: "",
     price: "",
     category: "",
-    isUsed: "false",
-    isHidden: "false"
+    isUsed: false,
+    isHidden: false,
   };
 
   useEffect(() => {
