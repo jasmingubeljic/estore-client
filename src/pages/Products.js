@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { getProducts } from "../api/apiCalls";
 import Container from "react-bootstrap/Container";
+import ProductCard from "../components/product/ProductCard";
+
+import Row from "react-bootstrap/Row";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -17,13 +19,11 @@ const Products = () => {
   return (
     <Container>
       <h1 className="text-red">Products: </h1>
-      <ul>
-        {products.map((prod) => (
-          <li key={prod.id}>
-            <Link to={`/artikli/${prod.id}`}>{prod.title}</Link>
-          </li>
+      <Row xs={1} sm={2} md={3} lg={5} className="g-3">
+        {products.map((p, idx) => (
+          <ProductCard key={idx} product={p} />
         ))}
-      </ul>
+      </Row>
     </Container>
   );
 };

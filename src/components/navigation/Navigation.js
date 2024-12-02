@@ -12,7 +12,7 @@ const Navigation = () => {
     <Navbar
       collapseOnSelect
       expand="lg"
-      className="bg-body-tertiary mb-3"
+      className="bg-body-tertiary mb-3 shadow"
       sticky="top"
     >
       <Container>

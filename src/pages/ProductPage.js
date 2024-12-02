@@ -3,6 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getProductById, deleteProduct } from "../api/apiCalls";
 import { apiUrl } from "../appInfo";
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 
@@ -29,37 +32,42 @@ const ProductPage = () => {
   if (product) {
     return (
       <Container className="h-100">
-        <h1>{product.title} </h1>
-        <img
-          src={apiUrl + "/" + product.imageUrl}
-          alt={product.title}
-          width="100"
-        />
-        <ul>
-          <li>{product.description}</li>
-          <li>{product.price}</li>
-          <li>{product.category}</li>
-        </ul>
-        {/* <button
+        <Row>
+          <Col>
+            {" "}
+            <h1>{product.title}</h1>
+            <img
+              src={apiUrl + "/" + product.imageUrl}
+              alt={product.title}
+              width="100"
+            />
+            <ul>
+              <li>{product.description}</li>
+              <li>{product.price}</li>
+              <li>{product.category}</li>
+            </ul>
+            {/* <button
           onClick={() => {
             navigate("/artikli/" + params.id + "/promijeni");
           }}
         >
           Promijeni
         </button> */}
-        <Stack direction="horizontal" gap={3}>
-          <Button
-            variant="primary"
-            onClick={() => {
-              navigate("/artikli/" + params.id + "/promijeni");
-            }}
-          >
-            Promijeni
-          </Button>
-          <Button variant="danger" onClick={onProductDelete}>
-            Izbriši
-          </Button>
-        </Stack>
+            <Stack direction="horizontal" gap={3}>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  navigate("/artikli/" + params.id + "/promijeni");
+                }}
+              >
+                Promijeni
+              </Button>
+              <Button variant="danger" onClick={onProductDelete}>
+                Izbriši
+              </Button>
+            </Stack>
+          </Col>
+        </Row>
       </Container>
     );
   }
