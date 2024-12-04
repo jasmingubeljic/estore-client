@@ -18,8 +18,8 @@ const Products = () => {
 
   return (
     <Container>
-      <h1 className="text-red">Products: </h1>
-      <Row xs={1} sm={2} md={3} lg={5} className="g-3">
+      <h1>Products: </h1>
+      <Row xs={1} sm={2} md={3} lg={5} className="g-2">
         {products.map((p, idx) => (
           <ProductCard key={idx} product={p} />
         ))}
