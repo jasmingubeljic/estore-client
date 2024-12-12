@@ -9,7 +9,7 @@ import styles from "./ProductCard.module.scss";
 const ProductCard = ({ product }) => {
   return (
     <Col>
-      <Card /*border="dark"*/ className="shadow">
+      <Card /*border="info"*/ className="shadow-sm">
         <Link to={"/artikli/" + product.id}>
           <Card.Img
             variant="top"
@@ -19,13 +19,12 @@ const ProductCard = ({ product }) => {
           />
           <Card.Body className="p-2">
             <Stack gap={1}>
-              <Card.Title>{product.title}</Card.Title>
+              <Card.Title className="text-primary">{product.title}</Card.Title>
               <Stack direction="horizontal" gap={1}>
-                <Card.Text className="my-auto">{product.description}</Card.Text>
-                <Badge
-                  className="ms-auto my-auto py-2 px-2 bg-white text-primary fs-5"
-                  bg="primary"
-                >
+                <Card.Text className="my-auto text-info">
+                  {product.description}
+                </Card.Text>
+                <Badge className="ms-auto my-auto py-2 px-2 bg-white text-secondary fs-5">
                   {product.price} KM
                 </Badge>
               </Stack>

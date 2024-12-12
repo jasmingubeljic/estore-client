@@ -8,6 +8,9 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
+import Badge from "react-bootstrap/Badge";
+import Image from "react-bootstrap/Image";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 
 const ProductPage = () => {
   const [product, setProduct] = useState();
@@ -31,29 +34,43 @@ const ProductPage = () => {
 
   if (product) {
     return (
-      <Container className="h-100">
-        <Row>
-          <Col>
-            {" "}
-            <h1>{product.title}</h1>
-            <img
+      <Container>
+        <Row className="">
+          <Breadcrumb>
+            <Breadcrumb.Item href="#">Artikli</Breadcrumb.Item>
+            <Breadcrumb.Item active>{product.title}</Breadcrumb.Item>
+          </Breadcrumb>
+        </Row>
+        <Row className="shadow-sm rounded-1 mb-3">
+          <Col lg={10} className="py-3 mx-0 px-0">
+            <Image
               src={apiUrl + "/" + product.imageUrl}
               alt={product.title}
-              width="100"
+              className="w-100 mt-0 mx-md-3"
             />
-            <ul>
-              <li>{product.description}</li>
-              <li>{product.price}</li>
-              <li>{product.category}</li>
-            </ul>
-            {/* <button
-          onClick={() => {
-            navigate("/artikli/" + params.id + "/promijeni");
-          }}
-        >
-          Promijeni
-        </button> */}
-            <Stack direction="horizontal" gap={3}>
+            <Stack direction="vertical" className="mx-3">
+              <h1 className="fs-5 mt-2 mb-1">{product.title}</h1>
+              <h2>
+                <Badge bg="secondary" className="me-auto p-1 rounded-0 fs-6">
+                  {product.price} KM
+                </Badge>
+              </h2>
+            </Stack>
+          </Col>
+        </Row>
+        <Row className="shadow-sm rounded-1 mb-3">
+          <Col lg={10} className="py-3 mx-0 px-0">
+            <Stack direction="vertical" gap={1} className="mx-3">
+              <p className="fs-6 text-uppercase text-info">
+                {product.category}
+              </p>
+              <p>{product.description}</p>
+            </Stack>
+          </Col>
+        </Row>
+        <Row className="shadow-sm rounded-1 mb-3">
+          <Col lg={10} className="py-3 mx-0 px-0">
+            <Stack direction="horizontal" gap={3} className="mx-3">
               <Button
                 variant="primary"
                 onClick={() => {
