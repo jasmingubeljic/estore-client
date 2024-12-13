@@ -5,6 +5,7 @@ import Stack from "react-bootstrap/Stack";
 import Badge from "react-bootstrap/Badge";
 import { apiUrl } from "../../appInfo";
 import styles from "./ProductCard.module.scss";
+import TimeAgo from "react-timeago";
 
 const ProductCard = ({ product }) => {
   return (
@@ -22,7 +23,7 @@ const ProductCard = ({ product }) => {
               <Card.Title className="text-primary">{product.title}</Card.Title>
               <Stack direction="horizontal" gap={1}>
                 <Card.Text className="my-auto text-info">
-                  {product.description}
+                  <TimeAgo date={product.createdAt} />
                 </Card.Text>
                 <Badge className="ms-auto my-auto py-2 px-2 bg-white text-secondary fs-5">
                   {product.price} KM
