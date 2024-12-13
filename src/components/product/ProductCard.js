@@ -20,12 +20,14 @@ const ProductCard = ({ product }) => {
           />
           <Card.Body className="p-2">
             <Stack gap={1}>
-              <Card.Title className="text-primary">{product.title}</Card.Title>
+              <Card.Title className="text-dark text-truncate">
+                {product.title}
+              </Card.Title>
               <Stack direction="horizontal" gap={1}>
                 <Card.Text className="my-auto text-info">
                   <TimeAgo date={product.createdAt} />
                 </Card.Text>
-                <Badge className="ms-auto my-auto py-2 px-2 bg-white text-secondary fs-5">
+                <Badge className="ms-auto my-auto py-2 px-2 bg-white text-info fs-6">
                   {product.price} KM
                 </Badge>
               </Stack>

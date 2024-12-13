@@ -24,7 +24,7 @@ const Products = () => {
           <Breadcrumb.Item active>Artikli</Breadcrumb.Item>
         </Breadcrumb>
       </Row>
-      <Row xs={1} sm={2} md={3} lg={5} className="g-2">
+      <Row xs={1} sm={2} md={2} lg={3} xl={5} className="g-3">
         {products.map((p, idx) => (
           <ProductCard key={idx} product={p} />
         ))}

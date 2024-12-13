@@ -38,7 +38,7 @@ const ProductPage = () => {
         <Row className="">
           <Breadcrumb>
             <Breadcrumb.Item href="#">Artikli</Breadcrumb.Item>
-            <Breadcrumb.Item active>{product.title}</Breadcrumb.Item>
+            <Breadcrumb.Item active>{product.id}</Breadcrumb.Item>
           </Breadcrumb>
         </Row>
         <Row className="shadow-sm rounded-1 mb-3">
