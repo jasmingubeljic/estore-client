@@ -5,10 +5,12 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import Stack from "react-bootstrap/Stack";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Image from "react-bootstrap/Image";
 import logoImage from "../../assets/images/logo-dark.svg";
+import { BiPlusCircle, BiLogInCircle, BiPackage } from "react-icons/bi";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -41,7 +43,7 @@ const Navigation = () => {
           className="d-lg-none ms-2 me-auto"
           onClick={() => navigateTo("/")}
         >
-          <Image src={logoImage} alt="eStore logo" width="80px" />
+          <Image src={logoImage} alt="eStore logo" width="85px" />
         </Navbar.Brand>
         <Offcanvas
           show={show}
@@ -61,11 +63,14 @@ const Navigation = () => {
             >
               <Image src={logoImage} alt="eStore logo" width="90px" />
             </Navbar.Brand>
-            <Nav className="me-auto">
+            <Nav className="me-auto gap-2">
               <Nav.Link onClick={() => navigateTo("/artikli")}>
-                Artikli
+                <Stack direction="horizontal" gap="1">
+                  <BiPackage />
+                  Artikli
+                </Stack>
               </Nav.Link>
-              <NavDropdown title="Kategorije" id="basic-nav-dropdown">
+              {/* <NavDropdown title="Kategorije" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">
                   Kategorija 1
                 </NavDropdown.Item>
@@ -76,12 +81,18 @@ const Navigation = () => {
                 <NavDropdown.Item href="#action/3.4">
                   Separated link
                 </NavDropdown.Item>
-              </NavDropdown>
+              </NavDropdown> */}
               <Nav.Link onClick={() => navigateTo("/artikli/novi-artikal")}>
-                Objavi artikal
+                <Stack direction="horizontal" gap="1">
+                  <BiPlusCircle />
+                  Objavi artikal
+                </Stack>
               </Nav.Link>
               <Nav.Link onClick={() => navigateTo("/prijava")}>
-                Prijavi se
+                <Stack direction="horizontal" gap="1">
+                  <BiLogInCircle />
+                  Prijavi se
+                </Stack>
               </Nav.Link>
             </Nav>
             {/* </Navbar.Collapse> */}
