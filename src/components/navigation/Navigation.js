@@ -7,6 +7,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import Image from "react-bootstrap/Image";
+import logoImage from "../../assets/images/logo-dark.svg";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -39,7 +41,7 @@ const Navigation = () => {
           className="d-lg-none ms-2 me-auto"
           onClick={() => navigateTo("/")}
         >
-          eShop
+          <Image src={logoImage} alt="eStore logo" width="80px" />
         </Navbar.Brand>
         <Offcanvas
           show={show}
@@ -48,14 +50,16 @@ const Navigation = () => {
           placement="start"
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title>eShop</Offcanvas.Title>
+            <Offcanvas.Title>
+              <Image src={logoImage} alt="eStore logo" width="80px" />
+            </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Navbar.Brand
-              className="d-none d-lg-block"
+              className="d-none d-lg-block d-lg-flex align-items-center"
               onClick={() => navigateTo("/")}
             >
-              eShop
+              <Image src={logoImage} alt="eStore logo" width="90px" />
             </Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link onClick={() => navigateTo("/artikli")}>
