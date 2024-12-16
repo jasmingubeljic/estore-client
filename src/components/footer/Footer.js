@@ -26,7 +26,6 @@ const Footer = () => {
                   className="opacity-75"
                 />
               </h3>
-              {/* <p>© 2021 eStore, Inc. All rights reserved.</p> */}
             </Stack>
           </Col>
           <Col sm={12} lg={3}>
@@ -81,6 +80,9 @@ const Footer = () => {
           </Col>
         </Row>
       </Container>
+      <div className="text-info text-center bg-black m-0 p-3">
+        <p className="opacity-50">© 2024 eStore, Inc. All rights reserved.</p>
+      </div>
     </footer>
   );
 };
