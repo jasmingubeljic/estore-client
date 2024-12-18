@@ -11,6 +11,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import Image from "react-bootstrap/Image";
 import logoImage from "../../assets/images/logo-dark.svg";
 import { BiPlusCircle, BiLogInCircle, BiPackage } from "react-icons/bi";
+import Search from "../search/Search";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -98,6 +99,7 @@ const Navigation = () => {
             {/* </Navbar.Collapse> */}
           </Offcanvas.Body>
         </Offcanvas>
+        <Search className="w-50" />
       </Container>
     </Navbar>
   );

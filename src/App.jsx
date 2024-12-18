@@ -1,12 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Wrapper from "./pages/Wrapper";
-import HomePage from "./pages/HomePage";
-import Products from "./pages/Products";
-import ProductPage from "./pages/ProductPage";
-import SaveProductPage from "./pages/SaveProductPage";
-import EditProductPage from "./pages/EditProductPage";
-import LoginPage from "./pages/LoginPage";
-import NotFoundPage from "./pages/NotFoundPage";
+import Wrapper from "./pages/Wrapper.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import Products from "./pages/Products.jsx";
+import ProductPage from "./pages/ProductPage.jsx";
+import SaveProductPage from "./pages/SaveProductPage.jsx";
+import EditProductPage from "./pages/EditProductPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
 
 const router = createBrowserRouter(
   [
