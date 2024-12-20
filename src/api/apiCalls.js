@@ -1,4 +1,5 @@
 import { apiUrl } from "../appInfo";
+import { readToken } from "../utils/auth";
 
 export const logIn = async (email, password, onSuccess, onError) => {
   const data = { email, password };
@@ -42,9 +43,7 @@ export const createProduct = async (productForm, onSuccess, onError) => {
     const response = await fetch(apiUrl + q, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("userAndToken")).token
-        }`,
+        Authorization: `Bearer ${readToken()}`,
       },
       body: formData,
     });
@@ -82,9 +81,7 @@ export const updateProductById = async (
     const response = await fetch(apiUrl + q, {
       method: "PUT",
       headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("userAndToken")).token
-        }`,
+        Authorization: `Bearer ${readToken()}`,
       },
       body: data,
     });
@@ -152,9 +149,7 @@ export const deleteProduct = async (id, product, onSuccess, onError) => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("userAndToken")).token
-        }`,
+        Authorization: `Bearer ${readToken()}`,
       },
       body: JSON.stringify(product),
     });

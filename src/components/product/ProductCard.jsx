@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
   return (
     <Col>
       <Card /*border="info"*/ className="shadow-sm">
-        <Link to={"/artikli/" + product.id}>
+        <Link className={styles['link-style']} to={"/artikli/" + product.id}>
           <Card.Img
             variant="top"
             src={apiUrl + "/" + product.imageUrl}

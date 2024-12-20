@@ -3,12 +3,13 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useRevalidator } from "react-router-dom";
 import { apiUrl } from "../appInfo";
 
 const LoginPage = () => {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
+  const revalidator = useRevalidator()
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -32,6 +33,7 @@ const LoginPage = () => {
       return setErrors(resData.messages);
     }
     localStorage.setItem("userAndToken", JSON.stringify(resData));
+    revalidator.revalidate()
     setErrors([]);
     navigate("/artikli");
   };

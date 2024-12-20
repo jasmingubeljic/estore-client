@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Form, NavLink, useNavigate, useLoaderData, useRevalidator } from "react-router-dom";
 import classes from "./Navigation.module.scss";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -14,7 +14,10 @@ import { BiPlusCircle, BiLogInCircle, BiPackage } from "react-icons/bi";
 import Search from "../search/Search";
 
 const Navigation = () => {
+  const token = useLoaderData('wrapperComponent')
   const navigate = useNavigate();
+
+const revalidator = useRevalidator();
   const [show, setShow] = useState(false);
 
   const handleClose = useCallback(() => setShow(false));
@@ -24,6 +27,11 @@ const Navigation = () => {
     handleClose();
     navigate(url);
   });
+
+  const tokenRemovalHandler = () => {
+    localStorage.removeItem('userAndToken')
+    revalidator.revalidate()
+  }
 
   return (
     <Navbar
@@ -65,7 +73,7 @@ const Navigation = () => {
               <Image src={logoImage} alt="eStore logo" width="90px" />
             </Navbar.Brand>
             <Nav className="me-auto gap-2">
-              <Nav.Link onClick={() => navigateTo("/artikli")}>
+              <Nav.Link onClick={() => navigateTo("/artikli")} >
                 <Stack direction="horizontal" gap="1">
                   <BiPackage />
                   Artikli
@@ -83,17 +91,23 @@ const Navigation = () => {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown> */}
-              <Nav.Link onClick={() => navigateTo("/artikli/novi-artikal")}>
+              <Nav.Link onClick={() => navigateTo("/artikli/novi-artikal")} hidden={!token}>
                 <Stack direction="horizontal" gap="1">
                   <BiPlusCircle />
                   Objavi artikal
                 </Stack>
               </Nav.Link>
-              <Nav.Link onClick={() => navigateTo("/prijava")}>
+              <Nav.Link hidden={token} onClick={() => navigateTo("/prijava")}>
                 <Stack direction="horizontal" gap="1">
                   <BiLogInCircle />
                   Prijavi se
                 </Stack>
+              </Nav.Link>
+              <Nav.Link hidden={!token} onClick={tokenRemovalHandler}>
+                    <Stack direction="horizontal" gap="1">
+                        <BiLogInCircle />
+                          Logout
+                    </Stack>
               </Nav.Link>
             </Nav>
             {/* </Navbar.Collapse> */}
