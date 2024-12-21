@@ -12,8 +12,8 @@ const HomePage = () => {
     getProducts(null, 4, onGetProductsSuccess, (err) => console.log(err));
   }, []);
 
-  const onGetProductsSuccess = (prods) => {
-    setProducts(prods);
+  const onGetProductsSuccess = ({ products, totalProductCount }) => {
+    setProducts(products);
   };
   return (
     <>
