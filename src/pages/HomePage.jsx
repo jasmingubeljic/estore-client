@@ -9,7 +9,7 @@ const HomePage = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    getProducts(onGetProductsSuccess, (err) => console.log(err));
+    getProducts(null, 4, onGetProductsSuccess, (err) => console.log(err));
   }, []);
 
   const onGetProductsSuccess = (prods) => {

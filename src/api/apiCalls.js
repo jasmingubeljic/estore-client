@@ -96,9 +96,9 @@ export const updateProductById = async (
   }
 };
 
-export const getProducts = async (onSuccess, onError) => {
+export const getProducts = async (offset, limit, onSuccess, onError) => {
   try {
-    let q = "/product";
+    let q = `/product?offset=${offset}&limit=${limit}`;
     const response = await fetch(apiUrl + q, {
       method: "GET",
       headers: {
