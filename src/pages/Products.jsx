@@ -7,21 +7,32 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import { BiSolidChevronDown } from "react-icons/bi";
+import { detectScreen } from "../utils/devices";
 
 const Products = () => {
   const [prods, setProds] = useState([]);
   const [totalProductCount, setTotalProductCount] = useState();
-  const limit = 2;
+
+  let limit = 2;
+  if (detectScreen() === "lg") {
+    limit = 3 * 1; // limit = product cards * number of rows
+  }
+  if (["xl", "xxl"].includes(detectScreen())) {
+    limit = 5 * 1; // limit = product cards * number of rows
+  }
 
   useEffect(() => {
     getProducts(null, limit, onGetProductsSuccess, (err) => console.log(err));
   }, []);
 
-  const onGetProductsSuccess = ({ products, totalProductCount }) => {
-    const updatedProds = [...prods, ...products];
-    setProds(updatedProds);
-    setTotalProductCount(totalProductCount);
-  };
+  const onGetProductsSuccess = useCallback(
+    ({ products, totalProductCount }) => {
+      const updatedProds = [...prods, ...products];
+      setProds(updatedProds);
+      setTotalProductCount(totalProductCount);
+    },
+    [prods]
+  );
 
   const getMoreProductsHandler = useCallback(
     (e) => {
