@@ -8,10 +8,12 @@ import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import { BiSolidChevronDown } from "react-icons/bi";
 import { detectScreen } from "../utils/devices";
+import ProductCardPlaceholderGroup from "../components/product/ProductCardPlaceholderGroup";
 
 const Products = () => {
   const [prods, setProds] = useState([]);
   const [totalProductCount, setTotalProductCount] = useState();
+  const [fetching, setFetching] = useState(true);
 
   let limit = 2;
   if (detectScreen() === "lg") {
@@ -22,6 +24,7 @@ const Products = () => {
   }
 
   useEffect(() => {
+    setFetching(true);
     getProducts(null, limit, onGetProductsSuccess, (err) => console.log(err));
   }, []);
 
@@ -30,6 +33,7 @@ const Products = () => {
       const updatedProds = [...prods, ...products];
       setProds(updatedProds);
       setTotalProductCount(totalProductCount);
+      setFetching(false);
     },
     [prods]
   );
@@ -39,6 +43,7 @@ const Products = () => {
       if (prods.length === totalProductCount) {
         return;
       }
+      setFetching(true);
       getProducts(prods.length, limit, onGetProductsSuccess, (err) =>
         console.log(err)
       );
@@ -57,6 +62,7 @@ const Products = () => {
         {prods.map((p, idx) => (
           <ProductCard key={idx} product={p} />
         ))}
+        {fetching && <ProductCardPlaceholderGroup cardQuantity={limit} />}
       </Row>
       <Stack>
         <Button

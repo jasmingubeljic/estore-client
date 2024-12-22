@@ -11,7 +11,7 @@ import styles from "./ProductCard.module.scss";
 const ProductCard = ({ product }) => {
   return (
     <Col>
-      <Card /*border="info"*/ className="shadow-sm">
+      <Card /*border="info"*/ className="shadow-sm overflow-hidden">
         <Link className={styles["link-style"]} to={"/artikli/" + product.id}>
           <Card.Img
             variant="top"
