@@ -80,7 +80,7 @@ const Navigation = () => {
               >
                 <Image src={logoImage} alt="eStore logo" width="90px" />
               </Navbar.Brand>
-              <Nav className="me-auto gap-2">
+              <Nav className="me-auto gap-2 w-auto">
                 <Nav.Link onClick={() => navigateTo("/artikli")}>
                   <Stack direction="horizontal" gap="1">
                     <BiPackage />
@@ -133,14 +133,14 @@ const Navigation = () => {
             to="/artikli"
             className="m-auto d-flex flex-column align-items-center py-2 text-decoration-none text-dark"
           >
-            <BiHomeAlt2 className="fs-4 text-dark" />
+            <BiHomeAlt2 className="fs-5" />
             <div className="">eStore</div>
           </Link>
           <Link
             to="/artikli"
             className="m-auto d-flex flex-column align-items-center py-2 text-decoration-none text-dark"
           >
-            <BiPackage className="fs-4 text-dark" />
+            <BiPackage className="fs-5" />
             <div className="">Products</div>
           </Link>
           {token ? (
@@ -148,7 +148,7 @@ const Navigation = () => {
               to="/artikli/novi-artikal"
               className="m-auto d-flex flex-column align-items-center py-2 text-decoration-none text-dark"
             >
-              <BiPlusCircle className="fs-4 text-dark" />
+              <BiPlusCircle className="fs-5" />
               <div className="">Add</div>
             </Link>
           ) : (
@@ -156,7 +156,7 @@ const Navigation = () => {
               to="/prijava"
               className="m-auto d-flex flex-column align-items-center py-2 text-decoration-none text-dark"
             >
-              <BiLogInCircle className="fs-4 text-dark" />
+              <BiLogInCircle className="fs-5" />
               <div className="">Login</div>
             </Link>
           )}
