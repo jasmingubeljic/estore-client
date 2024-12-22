@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
 import Badge from "react-bootstrap/Badge";
 import { apiUrl } from "../../appInfo";
+import FormattedPrice from "../price/FormattedPrice";
 import TimeAgo from "react-timeago";
 import styles from "./ProductCard.module.scss";
 
@@ -11,7 +12,7 @@ const ProductCard = ({ product }) => {
   return (
     <Col>
       <Card /*border="info"*/ className="shadow-sm">
-        <Link className={styles['link-style']} to={"/artikli/" + product.id}>
+        <Link className={styles["link-style"]} to={"/artikli/" + product.id}>
           <Card.Img
             variant="top"
             src={apiUrl + "/" + product.imageUrl}
@@ -32,7 +33,21 @@ const ProductCard = ({ product }) => {
                   <TimeAgo date={product.createdAt} />
                 </Card.Text>
                 <Badge className="ms-auto my-auto py-2 px-2 bg-white text-info fs-6">
-                  {product.price} KM
+                  {/* {
+                    <FormattedPrice
+                      price={product.price}
+                      locale="en-US"
+                      currency="USD"
+                    />
+                  } */}
+
+                  {
+                    <FormattedPrice
+                      price={product.price}
+                      locale="bs-BA"
+                      currency="BAM"
+                    />
+                  }
                 </Badge>
               </Stack>
             </Stack>
