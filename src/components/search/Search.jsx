@@ -1,18 +1,20 @@
+import { useRef, useCallback } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { BiSearchAlt } from "react-icons/bi";
+import { MdClear } from "react-icons/md";
 
 const Search = (props) => {
+  const inputRef = useRef();
+
   const onChangeHandler = (e) => {
     const val = e.target.value.trim();
     console.log("onChangeHandler", val);
   };
 
-  const onSubmitHandler = (e) => {
-    const val = e.target.value.trim();
-    console.log("on sumbit: ".val);
-  };
+  const clearSearchInputHandler = useCallback(() => {
+    inputRef.current.value = "";
+  });
 
   return (
     <InputGroup className={props.className}>
@@ -22,10 +24,15 @@ const Search = (props) => {
         aria-describedby="search1"
         onChange={onChangeHandler}
         method="POST"
-        onSubmit={onSubmitHandler}
+        ref={inputRef}
       />
-      <Button type="submit" variant="outline-info" id="search1">
-        <BiSearchAlt />
+      <Button
+        type="submit"
+        variant="outline-info"
+        id="search1"
+        className="bg-white"
+      >
+        <MdClear onClick={clearSearchInputHandler} />
       </Button>
     </InputGroup>
   );
