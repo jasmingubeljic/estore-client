@@ -1,3 +1,5 @@
+import { redirect } from "react-router-dom";
+
 export const readToken = () => {
   if (localStorage.getItem("userAndToken") !== null) {
     const token = JSON.parse(localStorage.getItem("userAndToken")).token;
@@ -9,4 +11,11 @@ export const readToken = () => {
 export const isTokenStored = () => {
   const val = readToken();
   return !!val;
+};
+
+export const protectAuthRoutes = () => {
+  const tokenExists = isTokenStored();
+  if (!tokenExists) {
+    return redirect("/prijava");
+  }
 };
