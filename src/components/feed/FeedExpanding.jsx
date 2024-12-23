@@ -1,12 +1,14 @@
 import { useEffect, useState, useCallback } from "react";
-import { getProducts } from "../api/apiCalls";
-import FeedExpanding from "../components/feed/FeedExpanding";
-import Container from "react-bootstrap/Container";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
+import { getProducts } from "../../api/apiCalls";
+import ProductCard from "../product/ProductCard";
 import Row from "react-bootstrap/Row";
-import { detectScreen } from "../utils/devices";
+import Button from "react-bootstrap/Button";
+import Stack from "react-bootstrap/Stack";
+import { BiSolidChevronDown } from "react-icons/bi";
+import { detectScreen } from "../../utils/devices";
+import ProductCardPlaceholderGroup from "../product/ProductCardPlaceholderGroup";
 
-const Products = () => {
+const FeedExpanding = () => {
   const [prods, setProds] = useState([]);
   const [totalProductCount, setTotalProductCount] = useState();
   const [fetching, setFetching] = useState(true);
@@ -48,15 +50,27 @@ const Products = () => {
   );
 
   return (
-    <Container>
-      <Row className="mx-1 py-1">
-        <Breadcrumb>
-          <Breadcrumb.Item active>Artikli</Breadcrumb.Item>
-        </Breadcrumb>
+    <>
+      <Row xs={2} sm={2} md={2} lg={3} xl={5} className="g-2">
+        {prods.map((p, idx) => (
+          <ProductCard key={idx} product={p} />
+        ))}
+        {fetching && <ProductCardPlaceholderGroup cardQuantity={limit} />}
       </Row>
-      <FeedExpanding />
-    </Container>
+      <Stack>
+        <Button
+          hidden={
+            totalProductCount <= limit || prods.length === totalProductCount
+          }
+          className="mx-auto mt-4"
+          variant="outline-info rounded-1"
+          onClick={getMoreProductsHandler}
+        >
+          <BiSolidChevronDown className="fs-1" />
+        </Button>
+      </Stack>
+    </>
   );
 };
 
-export default Products;
+export default FeedExpanding;
