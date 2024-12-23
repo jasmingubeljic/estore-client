@@ -69,6 +69,16 @@ const FeedExpanding = () => {
           <BiSolidChevronDown className="fs-1" />
         </Button>
       </Stack>
+      {prods.length === 0 && (
+        // <p>
+        //   Upload your product first to attract potential buyers quickly—an
+        //   excellent opportunity!
+        // </p>
+        <p>
+          Be the first to showcase your product and connect with your potential
+          customers.
+        </p>
+      )}
     </>
   );
 };
