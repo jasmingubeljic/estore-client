@@ -77,3 +77,9 @@ $placeholder-opacity-min: .2;
 a {
     text-decoration: none;
 }
+
+#root {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
