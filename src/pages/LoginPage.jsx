@@ -9,8 +9,7 @@ import { apiUrl } from "../appInfo";
 const LoginPage = () => {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
-  const revalidator = useRevalidator()
-
+  const revalidator = useRevalidator();
   const submitHandler = async (e) => {
     e.preventDefault();
     const { email, password } = e.target;
@@ -27,13 +26,12 @@ const LoginPage = () => {
       body: JSON.stringify(data),
     });
     const resData = await res.json();
-    console.log(res);
     if (!res.ok) {
       console.log("failed");
       return setErrors(resData.messages);
     }
     localStorage.setItem("userAndToken", JSON.stringify(resData));
-    revalidator.revalidate()
+    revalidator.revalidate();
     setErrors([]);
     navigate("/artikli");
   };
