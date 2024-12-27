@@ -141,6 +141,51 @@ export const getProductById = async (id, onSuccess, onError) => {
   }
 };
 
+export const getCategories = async (onSuccess, onError) => {
+  try {
+    let q = `/category`;
+    const response = await fetch(apiUrl + q, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+
+    const r = await response.json();
+    if (response.ok) {
+      onSuccess(r);
+    } else {
+      onError(response);
+    }
+  } catch (error) {
+    onError(error);
+  }
+};
+
+export const getCategoryById = async (id, onSuccess, onError) => {
+  try {
+    let q = "/category/" + id;
+
+    const response = await fetch(apiUrl + q, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+
+    const r = await response.json();
+    if (response.ok) {
+      onSuccess(r);
+    } else {
+      onError(response);
+    }
+  } catch (error) {
+    onError(error);
+  }
+};
+
 export const deleteProduct = async (id, product, onSuccess, onError) => {
   try {
     let q = `/admin/product/${id}`;
