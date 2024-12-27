@@ -7,14 +7,18 @@ import SaveProductPage from "./pages/SaveProductPage.jsx";
 import EditProductPage from "./pages/EditProductPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
-import { readToken, isTokenStored, protectAuthRoutes } from "./utils/auth";
+import { isTokenStored, protectAuthRoutes } from "./utils/auth";
+
+const sharedData = () => ({
+  token: isTokenStored(),
+});
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Wrapper />,
     id: "wrapperComponent",
-    loader: () => isTokenStored(),
+    loader: sharedData,
     errorElement: <NotFoundPage />,
     children: [
       { path: "/", element: <HomePage /> },

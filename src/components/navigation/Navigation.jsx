@@ -27,7 +27,7 @@ import {
 import Search from "../search/Search";
 
 const Navigation = () => {
-  const token = useLoaderData("wrapperComponent");
+  const { token } = useLoaderData("wrapperComponent");
   const navigate = useNavigate();
 
   const revalidator = useRevalidator();

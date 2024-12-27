@@ -5,7 +5,7 @@ import Footer from "../components/footer/Footer";
 import { clearToken, getRemainingTokenDuration } from "../utils/auth";
 
 const Wrapper = () => {
-  const token = useLoaderData();
+  const { token } = useLoaderData();
   const revalidator = useRevalidator();
 
   useEffect(() => {
