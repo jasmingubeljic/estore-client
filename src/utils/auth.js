@@ -30,7 +30,7 @@ export const isTokenStored = () => {
 export const protectAuthRoutes = () => {
   const tokenExists = isTokenStored();
   if (!tokenExists) {
-    return redirect("/prijava");
+    return redirect("/login");
   }
 };
 

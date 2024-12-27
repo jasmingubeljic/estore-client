@@ -45,7 +45,7 @@ const LoginForm = (props) => {
       </Form.Group>
 
       <Button variant="primary" type="submit">
-        Prijavi se
+        Login
       </Button>
     </Form>
   );

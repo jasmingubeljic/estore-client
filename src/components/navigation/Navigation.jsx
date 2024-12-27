@@ -81,10 +81,10 @@ const Navigation = () => {
                 <Image src={logoImage} alt="eStore logo" width="90px" />
               </Navbar.Brand>
               <Nav className="me-auto gap-2 w-auto">
-                <Nav.Link onClick={() => navigateTo("/artikli")}>
+                <Nav.Link onClick={() => navigateTo("/products")}>
                   <Stack direction="horizontal" gap="1">
                     <BiPackage />
-                    Artikli
+                    Products
                   </Stack>
                 </Nav.Link>
                 {/* <NavDropdown title="Kategorije" id="basic-nav-dropdown">
@@ -100,18 +100,18 @@ const Navigation = () => {
                 </NavDropdown.Item>
               </NavDropdown> */}
                 <Nav.Link
-                  onClick={() => navigateTo("/artikli/novi-artikal")}
+                  onClick={() => navigateTo("/products/add")}
                   hidden={!token}
                 >
                   <Stack direction="horizontal" gap="1">
                     <BiPlusCircle />
-                    Objavi artikal
+                    Add Product
                   </Stack>
                 </Nav.Link>
-                <Nav.Link hidden={token} onClick={() => navigateTo("/prijava")}>
+                <Nav.Link hidden={token} onClick={() => navigateTo("/login")}>
                   <Stack direction="horizontal" gap="1">
                     <BiLogInCircle />
-                    Prijavi se
+                    Login
                   </Stack>
                 </Nav.Link>
                 <Nav.Link hidden={!token} onClick={tokenRemovalHandler}>
@@ -130,14 +130,14 @@ const Navigation = () => {
       <div className="position-fixed bottom-0 w-100 bg-white border shadow z-3 d-sm-block d-lg-none">
         <Stack direction="horizontal">
           <Link
-            to="/artikli"
+            to="/products"
             className="m-auto d-flex flex-column align-items-center py-2 text-decoration-none text-dark"
           >
             <BiHomeAlt2 className="fs-5" />
             <div className="">eStore</div>
           </Link>
           <Link
-            to="/artikli"
+            to="/products"
             className="m-auto d-flex flex-column align-items-center py-2 text-decoration-none text-dark"
           >
             <BiPackage className="fs-5" />
@@ -145,7 +145,7 @@ const Navigation = () => {
           </Link>
           {token ? (
             <Link
-              to="/artikli/novi-artikal"
+              to="/products/add"
               className="m-auto d-flex flex-column align-items-center py-2 text-decoration-none text-dark"
             >
               <BiPlusCircle className="fs-5" />
@@ -153,7 +153,7 @@ const Navigation = () => {
             </Link>
           ) : (
             <Link
-              to="/prijava"
+              to="/login"
               className="m-auto d-flex flex-column align-items-center py-2 text-decoration-none text-dark"
             >
               <BiLogInCircle className="fs-5" />

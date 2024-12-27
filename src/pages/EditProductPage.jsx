@@ -31,12 +31,12 @@ const EditProductPage = () => {
       params.id,
       e.target,
       (success) => {
-        navigate(`/artikli/${success.id}`);
+        navigate(`/products/${success.id}`);
       },
       (err) => {
         console.log(err);
         if (err.err.name === "TokenExpiredError") {
-          return navigate("/prijava");
+          return navigate("/login");
         }
       }
     );

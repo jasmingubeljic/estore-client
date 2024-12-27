@@ -89,15 +89,15 @@ const EditProductForm = (props) => {
             onChange={onImageSelect}
           />
           <Form.Text className="text-muted">
-            Formati slike koje je moguće postaviti: JPG, PNG i GIF.
+            The image formats that can be uploaded include JPG, PNG, and GIF.
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-4" controlId="formProductDescription">
-          <Form.Label>Opis</Form.Label>
+          <Form.Label>Description</Form.Label>
           <Form.Control
             name="description"
             as="textarea"
-            // placeholder="Opisi artikal"
+            // placeholder="Product description"
             defaultValue={product.description}
             style={{ height: "100px" }}
           />
@@ -108,51 +108,51 @@ const EditProductForm = (props) => {
             name="price"
             type="number"
             required
-            // placeholder="Cijena"
+            // placeholder="Price"
             defaultValue={product.price}
           />
         </Form.Group>
         <Form.Group className="mb-4">
-          <Form.Label>Stanje</Form.Label>
+          <Form.Label>Condition</Form.Label>
           <Form.Check
             aria-label="isUsed"
-            label="Polovan"
+            label="Used"
             name="isUsed"
             type="checkbox"
             defaultChecked={product.isUsed}
           />
         </Form.Group>
         <Form.Group className="mb-4" controlId="formProductCategory">
-          <Form.Label>Kategorija</Form.Label>
+          <Form.Label>Category</Form.Label>
           <Form.Control
             name="category"
             type="category"
             required
-            // placeholder="Kategorija"
+            // placeholder="Category"
             defaultValue={product.category}
           />
         </Form.Group>
 
         <Form.Group className="mb-4">
-          {/* <Form.Label>Objavljen</Form.Label> */}
+          {/* <Form.Label>Published</Form.Label> */}
           <Form.Check
             aria-label="isHidden"
-            label="Skriven"
+            label="Hidden"
             name="isHidden"
             type="checkbox"
             defaultChecked={product.isHidden}
           />
           <Form.Text className="text-muted">
-            Skriven artikal nece biti vidljiv korisnicima na stranici.
+            The hidden product will not be visible to users on the page.
           </Form.Text>
         </Form.Group>
 
         <Stack direction="horizontal" gap={3}>
           <Button variant="primary" type="submit">
-            Spasi
+            Save
           </Button>
           <Button variant="outline-warning" onClick={() => navigate(-1)}>
-            Otkaži
+            Cancel
           </Button>
         </Stack>
       </Form>

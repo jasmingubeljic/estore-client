@@ -26,12 +26,12 @@ const SaveProductPage = () => {
       e.target,
       (resData) => {
         console.log("resData: ", resData);
-        navigate("/artikli");
+        navigate("/products");
       },
       (err) => {
         console.log(err);
         if (err.err?.name === "TokenExpiredError") {
-          return navigate("/prijava");
+          return navigate("/login");
         }
         setErrors(err.messages.errors);
       }
@@ -59,7 +59,7 @@ const SaveProductPage = () => {
       <Container>
         <Row>
           <Col xs={12} sm={6}>
-            <h1>Objavi novi artikal</h1>
+            <h1>Add new product</h1>
             <EditProductForm onSubmit={submitHandler} />
             {errors && errors.map((err) => <p key={err.msg}>{err.msg}</p>)}
           </Col>

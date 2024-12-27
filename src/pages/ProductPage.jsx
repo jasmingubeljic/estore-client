@@ -27,7 +27,7 @@ const ProductPage = () => {
   };
 
   const onProductDelete = () => {
-    deleteProduct(params.id, product, navigate("/artikli"), (error) => {
+    deleteProduct(params.id, product, navigate("/products"), (error) => {
       console.log(error);
     });
   };
@@ -37,7 +37,7 @@ const ProductPage = () => {
       <Container>
         <Row className="">
           <Breadcrumb>
-            <Breadcrumb.Item href="#">Artikli</Breadcrumb.Item>
+            <Breadcrumb.Item href="#">Products</Breadcrumb.Item>
             <Breadcrumb.Item active>{product.id}</Breadcrumb.Item>
           </Breadcrumb>
         </Row>
@@ -74,10 +74,10 @@ const ProductPage = () => {
               <Button
                 variant="primary"
                 onClick={() => {
-                  navigate("/artikli/" + params.id + "/promijeni");
+                  navigate("/products/" + params.id + "/update");
                 }}
               >
-                Promijeni
+                Update
               </Button>
               <Button variant="danger" onClick={onProductDelete}>
                 Izbriši

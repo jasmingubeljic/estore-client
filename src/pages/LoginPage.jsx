@@ -33,7 +33,7 @@ const LoginPage = () => {
     localStorage.setItem("userAndToken", JSON.stringify(resData));
     revalidator.revalidate();
     setErrors([]);
-    navigate("/artikli");
+    navigate("/products");
   };
 
   return (

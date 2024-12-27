@@ -13,13 +13,13 @@ describe("navigation component", () => {
     expect(linkElement).toBeDefined();
   });
 
-  test("has text: Artikli", () => {
+  test("has text: Products", () => {
     render(
       <Router>
         <Navigation />
       </Router>
     );
-    const linkElement = screen.getByText("Artikli");
+    const linkElement = screen.getByText("Products");
     expect(linkElement).toBeDefined();
   });
 
@@ -33,13 +33,13 @@ describe("navigation component", () => {
     expect(linkElement).toBeDefined();
   });
 
-  test("constins text: Prijavi se", () => {
+  test("constins text: Login", () => {
     render(
       <Router>
         <Navigation />
       </Router>
     );
-    const linkElement = screen.getByText("Prijavi se");
+    const linkElement = screen.getByText("Login");
     expect(linkElement).toBeDefined();
   });
 });

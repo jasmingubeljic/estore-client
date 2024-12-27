@@ -14,7 +14,7 @@ describe("Login page", () => {
     expect(screen.getByText(/password/i)).toBeDefined();
     expect(
       screen.getByRole("button", {
-        name: /prijavi se/i,
+        name: /login/i,
       })
     ).toBeInTheDocument();
   });

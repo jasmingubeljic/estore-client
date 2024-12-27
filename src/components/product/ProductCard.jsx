@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
   return (
     <Col>
       <Card /*border="info"*/ className="shadow-sm overflow-hidden">
-        <Link className={styles["link-style"]} to={"/artikli/" + product.id}>
+        <Link className={styles["link-style"]} to={"/products/" + product.id}>
           <Card.Img
             variant="top"
             src={apiUrl + "/" + product.imageUrl}

@@ -51,7 +51,7 @@ const Products = () => {
     <Container>
       <Row className="mx-1 py-1">
         <Breadcrumb>
-          <Breadcrumb.Item active>Artikli</Breadcrumb.Item>
+          <Breadcrumb.Item active>Products</Breadcrumb.Item>
         </Breadcrumb>
       </Row>
       <FeedExpanding />

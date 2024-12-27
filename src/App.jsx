@@ -22,19 +22,19 @@ const router = createBrowserRouter([
     errorElement: <NotFoundPage />,
     children: [
       { path: "/", element: <HomePage /> },
-      { path: "/artikli", element: <Products /> },
+      { path: "/products", element: <Products /> },
       {
-        path: "/artikli/novi-artikal",
+        path: "/products/add",
         element: <SaveProductPage />,
         loader: protectAuthRoutes,
       },
-      { path: "/artikli/:id", element: <ProductPage /> },
+      { path: "/products/:id", element: <ProductPage /> },
       {
-        path: "/artikli/:id/promijeni",
+        path: "/products/:id/update",
         element: <EditProductPage />,
         loader: protectAuthRoutes,
       },
-      { path: "/prijava", element: <LoginPage /> },
+      { path: "/login", element: <LoginPage /> },
     ],
   },
 ]);
