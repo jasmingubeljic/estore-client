@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import Stack from "react-bootstrap/Stack";
 import styles from "./EditProductForm.module.scss";
-import { apiUrl } from "../../appInfo";
+import { apiUrl } from "../../../appInfo";
 
 const EditProductForm = (props) => {
   const [imgSrc, setImgSrc] = useState("");
@@ -69,18 +69,18 @@ const EditProductForm = (props) => {
     <>
       <Form noValidate validated={validated} onSubmit={onSubmit} method="POST">
         <Form.Group className="mb-4" controlId="formProductTitle">
-          <Form.Label>Naziv artikla</Form.Label>
+          <Form.Label>Product Name</Form.Label>
           <Form.Control
             name="title"
             type="title"
-            // placeholder="Naziv artikla"
+            // placeholder="Product name"
             required
             defaultValue={product.title}
           />
         </Form.Group>
         <Image src={imgSrc} className={styles.imgPreview} />
         <Form.Group className="mb-4" controlId="formProductImage">
-          <Form.Label>Slika artikla</Form.Label>
+          <Form.Label>Product image</Form.Label>
           <Form.Control
             name="image"
             type="file"

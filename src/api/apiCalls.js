@@ -141,6 +141,34 @@ export const getProductById = async (id, onSuccess, onError) => {
   }
 };
 
+export const createCategory = async (categoryForm, onSuccess, onError) => {
+  const { title, image, description, isHidden } = categoryForm;
+  const formData = new FormData();
+  formData.append("title", title.value);
+  formData.append("image", image.files[0]);
+  formData.append("description", description.value);
+  formData.append("isHidden", isHidden.checked);
+
+  try {
+    let q = "/admin/category";
+    const response = await fetch(apiUrl + q, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${readToken()}`,
+      },
+      body: formData,
+    });
+    const r = await response.json();
+    if (response.ok) {
+      onSuccess(r);
+    } else {
+      onError(r);
+    }
+  } catch (error) {
+    onError(error);
+  }
+};
+
 export const getCategories = async (onSuccess, onError) => {
   try {
     let q = `/category`;

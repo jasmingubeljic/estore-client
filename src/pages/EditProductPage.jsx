@@ -4,7 +4,7 @@ import { getProductById, updateProductById } from "../api/apiCalls";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import EditProductForm from "../components/forms/EditProductForm";
+import EditProductForm from "../components/forms/EdtiProductForm/EditProductForm.jsx";
 import Loader from "../components/loader/Loader";
 
 const EditProductPage = () => {
