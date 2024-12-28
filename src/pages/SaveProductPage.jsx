@@ -80,7 +80,10 @@ const SaveProductPage = () => {
         <Row>
           <Col xs={12} sm={6}>
             <h1>Add new product</h1>
-            <EditProductForm onSubmit={onCreateProductHandler} />
+            <EditProductForm
+              categories={categories}
+              onSubmit={onCreateProductHandler}
+            />
             {errors && errors.map((err) => <p key={err.msg}>{err.msg}</p>)}
           </Col>
         </Row>

@@ -124,13 +124,14 @@ const EditProductForm = (props) => {
         </Form.Group>
         <Form.Group className="mb-4" controlId="formProductCategory">
           <Form.Label>Category</Form.Label>
-          <Form.Control
-            name="category"
-            type="category"
-            required
-            // placeholder="Category"
-            defaultValue={product.category}
-          />
+          <Form.Select name="category">
+            <option>---</option>
+            {props.categories.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.title}
+              </option>
+            ))}
+          </Form.Select>
         </Form.Group>
 
         <Form.Group className="mb-4">
