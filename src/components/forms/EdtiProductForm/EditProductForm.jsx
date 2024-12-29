@@ -17,7 +17,7 @@ const EditProductForm = (props) => {
     title: "",
     description: "",
     price: "",
-    category: "",
+    categoryId: "",
     isUsed: false,
     isHidden: false,
   };
@@ -54,7 +54,7 @@ const EditProductForm = (props) => {
         form.title.value &&
         form.description.value &&
         form.price.value &&
-        form.category.value
+        form.categoryId.value
       ) {
         if (props.product?.imageUrl || form.image.files.length !== 0) {
           props.onSubmit(event);
@@ -69,8 +69,9 @@ const EditProductForm = (props) => {
     <>
       <Form noValidate validated={validated} onSubmit={onSubmit} method="POST">
         <Form.Group className="mb-4" controlId="formProductTitle">
-          <Form.Label>Product Name</Form.Label>
+          <Form.Label>Product name</Form.Label>
           <Form.Control
+            size="lg"
             name="title"
             type="title"
             // placeholder="Product name"
@@ -103,13 +104,14 @@ const EditProductForm = (props) => {
           />
         </Form.Group>
         <Form.Group className="mb-4" controlId="formProductPrice">
-          <Form.Label>Cijena</Form.Label>
+          <Form.Label>Price</Form.Label>
           <Form.Control
             name="price"
             type="number"
             required
             // placeholder="Price"
             defaultValue={product.price}
+            size="lg"
           />
         </Form.Group>
         <Form.Group className="mb-4">
@@ -118,14 +120,18 @@ const EditProductForm = (props) => {
             aria-label="isUsed"
             label="Used"
             name="isUsed"
-            type="checkbox"
+            type="switch"
             defaultChecked={product.isUsed}
           />
         </Form.Group>
         <Form.Group className="mb-4" controlId="formProductCategory">
           <Form.Label>Category</Form.Label>
-          <Form.Select name="category">
-            <option>---</option>
+          <Form.Select
+            name="categoryId"
+            defaultValue={product.categoryId}
+            size="lg"
+          >
+            <option key="alkjsdf" value={""}></option>
             {props.categories.map((c) => (
               <option key={c.id} value={c.id}>
                 {c.title}
@@ -135,12 +141,12 @@ const EditProductForm = (props) => {
         </Form.Group>
 
         <Form.Group className="mb-4">
-          {/* <Form.Label>Published</Form.Label> */}
+          {/* <Form.Label>Hidden</Form.Label> */}
           <Form.Check
             aria-label="isHidden"
             label="Hidden"
             name="isHidden"
-            type="checkbox"
+            type="switch"
             defaultChecked={product.isHidden}
           />
           <Form.Text className="text-muted">
