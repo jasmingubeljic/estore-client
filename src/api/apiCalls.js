@@ -141,6 +141,30 @@ export const getProductById = async (id, onSuccess, onError) => {
   }
 };
 
+export const queryProducts = async (
+  queryStr,
+  categoryId,
+  offset,
+  limit,
+  onSuccess,
+  onError
+) => {
+  try {
+    let q = `/product/query?offset=${offset}&limit=${limit}&queryStr=${queryStr}&categoryId=${categoryId}`;
+    const response = await fetch(apiUrl + q, {
+      method: "GET",
+    });
+    const r = await response.json();
+    if (response.ok) {
+      onSuccess(r);
+    } else {
+      onError(r);
+    }
+  } catch (error) {
+    onError(error);
+  }
+};
+
 export const createCategory = async (categoryForm, onSuccess, onError) => {
   const { title, image, description, isHidden } = categoryForm;
   const formData = new FormData();
