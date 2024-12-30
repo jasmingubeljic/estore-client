@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { MdClear } from "react-icons/md";
+import { queryProducts } from "../../api/apiCalls";
 
 const Search = (props) => {
   const inputRef = useRef();
@@ -10,6 +11,14 @@ const Search = (props) => {
   const onChangeHandler = (e) => {
     const val = e.target.value.trim();
     console.log("onChangeHandler", val);
+    queryProducts(
+      val,
+      null,
+      0,
+      5,
+      (r) => console.log(r),
+      (err) => console.log(err)
+    );
   };
 
   const clearSearchInputHandler = useCallback(() => {
@@ -31,8 +40,9 @@ const Search = (props) => {
         variant="outline-info"
         id="search1"
         className="bg-white"
+        onClick={clearSearchInputHandler}
       >
-        <MdClear onClick={clearSearchInputHandler} />
+        <MdClear />
       </Button>
     </InputGroup>
   );
