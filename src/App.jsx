@@ -8,6 +8,7 @@ import EditProductPage from "./pages/EditProductPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import { isTokenStored, protectAuthRoutes } from "./utils/auth";
+import ContextProvider from "./store/context-store.jsx";
 
 const sharedData = () => ({
   token: isTokenStored(),
@@ -40,7 +41,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ContextProvider>
+      <RouterProvider router={router} />
+    </ContextProvider>
+  );
 }
 
 export default App;

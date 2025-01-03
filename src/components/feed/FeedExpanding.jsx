@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useContext } from "react";
 import { getProducts } from "../../api/apiCalls";
 import ProductCard from "../product/ProductCard";
 import Row from "react-bootstrap/Row";
@@ -7,9 +7,10 @@ import Stack from "react-bootstrap/Stack";
 import { BiSolidChevronDown } from "react-icons/bi";
 import { detectScreen } from "../../utils/devices";
 import ProductCardPlaceholderGroup from "../product/ProductCardPlaceholderGroup";
+import { Context } from "../../store/context-store";
 
 const FeedExpanding = () => {
-  const [prods, setProds] = useState([]);
+  const { state, dispatch } = useContext(Context);
   const [totalProductCount, setTotalProductCount] = useState();
   const [fetching, setFetching] = useState(true);
 
@@ -28,31 +29,43 @@ const FeedExpanding = () => {
 
   const onGetProductsSuccess = useCallback(
     ({ products, totalProductCount }) => {
-      const updatedProds = [...prods, ...products];
-      setProds(updatedProds);
+      // const updatedProds = [...state.products, ...products];
       setTotalProductCount(totalProductCount);
       setFetching(false);
+      dispatch({ type: "SET_PRODUCTS", payload: products });
     },
-    [prods]
+    []
+  );
+
+  const onGetMoreProductsSuccess = useCallback(
+    ({ products, totalProductCount }) => {
+      setTotalProductCount(totalProductCount);
+      dispatch({ type: "ADD_MORE_PRODUCTS", payload: products });
+      setFetching(false);
+    },
+    []
   );
 
   const getMoreProductsHandler = useCallback(
     (e) => {
-      if (prods.length === totalProductCount) {
+      if (state.products.length === totalProductCount) {
         return;
       }
       setFetching(true);
-      getProducts(prods.length, limit, onGetProductsSuccess, (err) =>
-        console.log(err)
+      getProducts(
+        state.products.length,
+        limit,
+        onGetMoreProductsSuccess,
+        (err) => console.log(err)
       );
     },
-    [prods, totalProductCount, limit]
+    [state.products, totalProductCount, limit]
   );
 
   return (
     <>
       <Row xs={2} sm={2} md={2} lg={3} xl={5} className="g-2">
-        {prods.map((p, idx) => (
+        {state.products.map((p, idx) => (
           <ProductCard key={idx} product={p} />
         ))}
         {fetching && <ProductCardPlaceholderGroup cardQuantity={limit} />}
@@ -60,7 +73,8 @@ const FeedExpanding = () => {
       <Stack>
         <Button
           hidden={
-            totalProductCount <= limit || prods.length === totalProductCount
+            totalProductCount <= limit ||
+            state.products.length === totalProductCount
           }
           className="mx-auto mt-4"
           variant="outline-info rounded-1"
@@ -69,7 +83,7 @@ const FeedExpanding = () => {
           <BiSolidChevronDown className="fs-1" />
         </Button>
       </Stack>
-      {prods.length === 0 && (
+      {state.products.length === 0 && (
         // <p>
         //   Upload your product first to attract potential buyers quickly—an
         //   excellent opportunity!
