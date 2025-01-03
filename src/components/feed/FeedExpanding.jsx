@@ -27,24 +27,17 @@ const FeedExpanding = () => {
     getProducts(null, limit, onGetProductsSuccess, (err) => console.log(err));
   }, []);
 
-  const onGetProductsSuccess = useCallback(
-    ({ products, totalProductCount }) => {
-      // const updatedProds = [...state.products, ...products];
-      setTotalProductCount(totalProductCount);
-      setFetching(false);
-      dispatch({ type: "SET_PRODUCTS", payload: products });
-    },
-    []
-  );
+  const onGetProductsSuccess = useCallback(({ products }) => {
+    setTotalProductCount(products.count);
+    setFetching(false);
+    dispatch({ type: "SET_PRODUCTS", payload: products.rows });
+  }, []);
 
-  const onGetMoreProductsSuccess = useCallback(
-    ({ products, totalProductCount }) => {
-      setTotalProductCount(totalProductCount);
-      dispatch({ type: "ADD_MORE_PRODUCTS", payload: products });
-      setFetching(false);
-    },
-    []
-  );
+  const onGetMoreProductsSuccess = useCallback(({ products }) => {
+    setTotalProductCount(products.count);
+    dispatch({ type: "ADD_MORE_PRODUCTS", payload: products.rows });
+    setFetching(false);
+  }, []);
 
   const getMoreProductsHandler = useCallback(
     (e) => {

@@ -6,15 +6,6 @@ import Row from "react-bootstrap/Row";
 import FeedExpanding from "../components/feed/FeedExpanding";
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    getProducts(null, 4, onGetProductsSuccess, (err) => console.log(err));
-  }, []);
-
-  const onGetProductsSuccess = ({ products, totalProductCount }) => {
-    setProducts(products);
-  };
   return (
     <>
       <Container>
