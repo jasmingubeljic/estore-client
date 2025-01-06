@@ -8,6 +8,7 @@ const initialVal = {
 
 const reducer = (state, action) => {
   if (action.type === "SET_PRODUCTS") {
+    console.log("SET_PRODUCTS", action.payload);
     return {
       products: action.payload,
     };
@@ -15,6 +16,13 @@ const reducer = (state, action) => {
   if (action.type === "ADD_MORE_PRODUCTS") {
     return {
       products: [...state.products, ...action.payload],
+    };
+  }
+
+  if (action.type === "SEARCH_PRODUCTS") {
+    console.log("action payload: ", action.payload);
+    return {
+      products: [...action.payload],
     };
   }
   return state;

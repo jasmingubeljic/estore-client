@@ -1,24 +1,21 @@
 import { useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { MdClear } from "react-icons/md";
-import { queryProducts } from "../../api/apiCalls";
 
 const Search = (props) => {
+  const navigate = useNavigate();
   const inputRef = useRef();
 
   const onChangeHandler = (e) => {
-    const val = e.target.value.trim();
-    console.log("onChangeHandler", val);
-    queryProducts(
-      val,
-      null,
-      0,
-      5,
-      (r) => console.log(r),
-      (err) => console.log(err)
-    );
+    let val = e.target.value.trim();
+    if (!val) {
+      return navigate("/search");
+    }
+    val = encodeURIComponent(val);
+    navigate("/search?query=" + val);
   };
 
   const clearSearchInputHandler = useCallback(() => {

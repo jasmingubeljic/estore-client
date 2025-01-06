@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
-import { getProducts } from "../api/apiCalls";
-import FeedExpanding from "../components/feed/FeedExpanding";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { getProducts, queryProducts } from "../api/apiCalls";
+import QueryFeed from "../components/feed/QueryFeed";
 import Container from "react-bootstrap/Container";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import Row from "react-bootstrap/Row";
@@ -14,7 +15,7 @@ const Products = () => {
           <Breadcrumb.Item active>Products</Breadcrumb.Item>
         </Breadcrumb>
       </Row>
-      <FeedExpanding />
+      <QueryFeed />
     </Container>
   );
 };
