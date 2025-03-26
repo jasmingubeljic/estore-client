@@ -1,7 +1,6 @@
 export const appInfo = {
-    appName: 'My app',
-    apiUrl: 'http://localhost:3001',
-}
+  appName: import.meta.env.VITE_APP_NAME,
+  apiUrl: import.meta.env.VITE_API_URL,
+};
 
-
-export const apiUrl = appInfo.apiUrl
+export const apiUrl = appInfo.apiUrl;
