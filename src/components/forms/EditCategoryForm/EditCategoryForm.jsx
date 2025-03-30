@@ -30,7 +30,7 @@ const EditCategoryForm = (props) => {
 
     if (form) {
       if (form.title.value && form.description.value) {
-        if (props.category?.imageUrl || form.image.files.length !== 0) {
+        if (props.category?.image || form.image.files.length !== 0) {
           props.onSubmit(event);
         } else {
           console.info("category update/creation stopped");
@@ -65,16 +65,8 @@ const EditCategoryForm = (props) => {
       <Image src={imgSrc} className={styles.imgPreview} />
       <Form.Group className="mb-4" controlId="formProductImage">
         <Form.Label>Category image</Form.Label>
-        <Form.Control
-          name="image"
-          type="file"
-          accept="image/*"
-          required={!category.title}
-          onChange={onImageSelect}
-        />
-        <Form.Text className="text-muted">
-          The image formats that can be uploaded include JPG, PNG, and GIF.
-        </Form.Text>
+        <Form.Control name="image" type="file" accept="image/*" required={!category.title} onChange={onImageSelect} />
+        <Form.Text className="text-muted">The image formats that can be uploaded include JPG, PNG, and GIF.</Form.Text>
       </Form.Group>
       <Form.Group className="mb-4" controlId="formProductDescription">
         <Form.Label>Description</Form.Label>
@@ -88,17 +80,8 @@ const EditCategoryForm = (props) => {
       </Form.Group>
       <Form.Group className="mb-4">
         {/* <Form.Label>Published</Form.Label> */}
-        <Form.Check
-          aria-label="isHidden"
-          label="Hidden"
-          name="isHidden"
-          type="checkbox"
-          defaultChecked={category.isHidden}
-        />
-        <Form.Text className="text-muted">
-          Users will not be able to see the hidden category and its associated
-          products on the page.
-        </Form.Text>
+        <Form.Check aria-label="isHidden" label="Hidden" name="isHidden" type="checkbox" defaultChecked={category.isHidden} />
+        <Form.Text className="text-muted">Users will not be able to see the hidden category and its associated products on the page.</Form.Text>
       </Form.Group>
 
       <Stack direction="horizontal" gap={3}>

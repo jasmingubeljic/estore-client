@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import Stack from "react-bootstrap/Stack";
 import styles from "./EditProductForm.module.scss";
-import { apiUrl } from "../../../appInfo";
+import { prodDir } from "../../../appInfo";
 
 const EditProductForm = (props) => {
   const [imgSrc, setImgSrc] = useState("");
@@ -24,8 +24,7 @@ const EditProductForm = (props) => {
 
   useEffect(() => {
     if (props.product) {
-      console.log(apiUrl + props.product.imageUrl);
-      setImgSrc(apiUrl + "/" + props.product.imageUrl);
+      setImgSrc(prodDir + props.product.image);
     }
   }, [props.product]);
 
@@ -50,13 +49,8 @@ const EditProductForm = (props) => {
     setValidated(true);
 
     if (form) {
-      if (
-        form.title.value &&
-        form.description.value &&
-        form.price.value &&
-        form.categoryId.value
-      ) {
-        if (props.product?.imageUrl || form.image.files.length !== 0) {
+      if (form.title.value && form.description.value && form.price.value && form.categoryId.value) {
+        if (props.product?.image || form.image.files.length !== 0) {
           props.onSubmit(event);
         } else {
           console.info("product update/creation stopped");
@@ -82,16 +76,8 @@ const EditProductForm = (props) => {
         <Image src={imgSrc} className={styles.imgPreview} />
         <Form.Group className="mb-4" controlId="formProductImage">
           <Form.Label>Product image</Form.Label>
-          <Form.Control
-            name="image"
-            type="file"
-            accept="image/*"
-            required={!product.title}
-            onChange={onImageSelect}
-          />
-          <Form.Text className="text-muted">
-            The image formats that can be uploaded include JPG, PNG, and GIF.
-          </Form.Text>
+          <Form.Control name="image" type="file" accept="image/*" required={!product.title} onChange={onImageSelect} />
+          <Form.Text className="text-muted">The image formats that can be uploaded include JPG, PNG, and GIF.</Form.Text>
         </Form.Group>
         <Form.Group className="mb-4" controlId="formProductDescription">
           <Form.Label>Description</Form.Label>
@@ -116,21 +102,11 @@ const EditProductForm = (props) => {
         </Form.Group>
         <Form.Group className="mb-4">
           <Form.Label>Condition</Form.Label>
-          <Form.Check
-            aria-label="isUsed"
-            label="Used"
-            name="isUsed"
-            type="switch"
-            defaultChecked={product.isUsed}
-          />
+          <Form.Check aria-label="isUsed" label="Used" name="isUsed" type="switch" defaultChecked={product.isUsed} />
         </Form.Group>
         <Form.Group className="mb-4" controlId="formProductCategory">
           <Form.Label>Category</Form.Label>
-          <Form.Select
-            name="categoryId"
-            defaultValue={product.categoryId}
-            size="lg"
-          >
+          <Form.Select name="categoryId" defaultValue={product.categoryId} size="lg">
             <option key="alkjsdf" value={""}></option>
             {props.categories.map((c) => (
               <option key={c.id} value={c.id}>
@@ -142,16 +118,8 @@ const EditProductForm = (props) => {
 
         <Form.Group className="mb-4">
           {/* <Form.Label>Hidden</Form.Label> */}
-          <Form.Check
-            aria-label="isHidden"
-            label="Hidden"
-            name="isHidden"
-            type="switch"
-            defaultChecked={product.isHidden}
-          />
-          <Form.Text className="text-muted">
-            The hidden product will not be visible to users on the page.
-          </Form.Text>
+          <Form.Check aria-label="isHidden" label="Hidden" name="isHidden" type="switch" defaultChecked={product.isHidden} />
+          <Form.Text className="text-muted">The hidden product will not be visible to users on the page.</Form.Text>
         </Form.Group>
 
         <Stack direction="horizontal" gap={3}>

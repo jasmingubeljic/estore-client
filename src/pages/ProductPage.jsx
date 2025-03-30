@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getProductById, deleteProduct } from "../api/apiCalls";
-import { apiUrl } from "../appInfo";
+import { prodDir } from "../appInfo";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -43,11 +43,7 @@ const ProductPage = () => {
         </Row>
         <Row className="shadow-sm rounded-1 mb-3">
           <Col lg={10} className="py-3 mx-0 px-0">
-            <Image
-              src={apiUrl + "/" + product.imageUrl}
-              alt={product.title}
-              className="w-100 mt-0 mx-md-3"
-            />
+            <Image src={prodDir + product.image} alt={product.title} className="w-100 mt-0 mx-md-3" />
             <Stack direction="vertical" className="mx-3">
               <h1 className="fs-5 mt-2 mb-1">{product.title}</h1>
               <h2>
@@ -61,9 +57,7 @@ const ProductPage = () => {
         <Row className="shadow-sm rounded-1 mb-3">
           <Col lg={10} className="py-3 mx-0 px-0">
             <Stack direction="vertical" gap={1} className="mx-3">
-              <p className="fs-6 text-uppercase text-info">
-                {product.category}
-              </p>
+              <p className="fs-6 text-uppercase text-info">{product.category}</p>
               <p>{product.description}</p>
             </Stack>
           </Col>
@@ -74,13 +68,13 @@ const ProductPage = () => {
               <Button
                 variant="primary"
                 onClick={() => {
-                  navigate("/products/" + params.id + "/update");
+                  navigate("/products/" + params.id + "/edit");
                 }}
               >
-                Update
+                Edit
               </Button>
               <Button variant="danger" onClick={onProductDelete}>
-                Izbriši
+                Delete
               </Button>
             </Stack>
           </Col>

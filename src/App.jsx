@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       },
       { path: "/products/:id", element: <ProductPage /> },
       {
-        path: "/products/:id/update",
+        path: "/products/:id/edit",
         element: <EditProductPage />,
         loader: protectAuthRoutes,
       },
