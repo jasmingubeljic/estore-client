@@ -1,63 +1,13 @@
-import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import Stack from "react-bootstrap/Stack";
 import styles from "./EditProductForm.module.scss";
-import { prodDir } from "../../../appInfo";
+import useProductForm from "../../../hooks/useProductForm";
+import PropTypes from "prop-types";
 
 const EditProductForm = (props) => {
-  const [imgSrc, setImgSrc] = useState("");
-  const [validated, setValidated] = useState(false);
-
-  const navigate = useNavigate();
-
-  const product = props.product || {
-    title: "",
-    description: "",
-    price: "",
-    categoryId: "",
-    isUsed: false,
-    isHidden: false,
-  };
-
-  useEffect(() => {
-    if (props.product) {
-      setImgSrc(prodDir + props.product.image);
-    }
-  }, [props.product]);
-
-  const onImageSelect = useCallback(async (e) => {
-    const files = e.target.files[0];
-    if (files) {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(files);
-      fileReader.addEventListener("load", function () {
-        setImgSrc(this.result);
-      });
-    }
-  }, []);
-
-  const onSubmit = useCallback((event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    setValidated(true);
-
-    if (form) {
-      if (form.title.value && form.description.value && form.price.value && form.categoryId.value) {
-        if (props.product?.image || form.image.files.length !== 0) {
-          props.onSubmit(event);
-        } else {
-          console.info("product update/creation stopped");
-        }
-      }
-    }
-  }, []);
+  const { imgSrc, validated, navigate, product, onImageSelect, onSubmit } = useProductForm(props);
 
   return (
     <>
@@ -116,3 +66,22 @@ const EditProductForm = (props) => {
 };
 
 export default EditProductForm;
+
+EditProductForm.propTypes = {
+  product: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    price: PropTypes.number,
+    categoryId: PropTypes.number,
+    isUsed: PropTypes.bool,
+    isHidden: PropTypes.bool,
+    image: PropTypes.string,
+  }),
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
