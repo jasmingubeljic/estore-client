@@ -64,41 +64,21 @@ const EditProductForm = (props) => {
       <Form noValidate validated={validated} onSubmit={onSubmit} method="POST">
         <Form.Group className="mb-4" controlId="formProductTitle">
           <Form.Label>Product name</Form.Label>
-          <Form.Control
-            size="lg"
-            name="title"
-            type="title"
-            // placeholder="Product name"
-            required
-            defaultValue={product.title}
-          />
+          <Form.Control size="lg" name="title" type="title" required defaultValue={product.title} maxLength="150" />
         </Form.Group>
         <Image src={imgSrc} className={styles.imgPreview} />
         <Form.Group className="mb-4" controlId="formProductImage">
           <Form.Label>Product image</Form.Label>
           <Form.Control name="image" type="file" accept="image/*" required={!product.title} onChange={onImageSelect} />
-          <Form.Text className="text-muted">The image formats that can be uploaded include JPG, PNG, and GIF.</Form.Text>
+          <Form.Text>The image formats that can be uploaded include JPG, PNG, and GIF.</Form.Text>
         </Form.Group>
         <Form.Group className="mb-4" controlId="formProductDescription">
           <Form.Label>Description</Form.Label>
-          <Form.Control
-            name="description"
-            as="textarea"
-            // placeholder="Product description"
-            defaultValue={product.description}
-            style={{ height: "100px" }}
-          />
+          <Form.Control name="description" as="textarea" defaultValue={product.description} style={{ height: "100px" }} maxLength="500" />
         </Form.Group>
         <Form.Group className="mb-4" controlId="formProductPrice">
           <Form.Label>Price</Form.Label>
-          <Form.Control
-            name="price"
-            type="number"
-            required
-            // placeholder="Price"
-            defaultValue={product.price}
-            size="lg"
-          />
+          <Form.Control name="price" type="number" defaultValue={product.price} size="lg" />
         </Form.Group>
         <Form.Group className="mb-4">
           <Form.Label>Condition</Form.Label>
