@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { MdClear } from "react-icons/md";
+import PropTypes from "prop-types";
 
 const Search = (props) => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Search = (props) => {
 
   const clearSearchInputHandler = useCallback(() => {
     inputRef.current.value = "";
-  });
+  }, []);
 
   return (
     <InputGroup className={props.className}>
@@ -32,17 +33,15 @@ const Search = (props) => {
         method="POST"
         ref={inputRef}
       />
-      <Button
-        type="submit"
-        variant="outline-info"
-        id="search1"
-        className="bg-white"
-        onClick={clearSearchInputHandler}
-      >
+      <Button type="submit" variant="outline-info" id="search1" className="bg-white" onClick={clearSearchInputHandler}>
         <MdClear />
       </Button>
     </InputGroup>
   );
+};
+
+Search.propTypes = {
+  className: PropTypes.string,
 };
 
 export default Search;
