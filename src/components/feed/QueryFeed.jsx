@@ -8,15 +8,13 @@ import ProductCardPlaceholderGroup from "../product/ProductCardPlaceholderGroup"
 
 const FeedExpanding = () => {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [fetching, setFetching] = useState(true);
 
   useEffect(() => {
     onQueryProductsHandler(searchParams.get("query"));
-  }, [searchParams.get("query")]);
-
-  const q = searchParams.get("query");
+  }, [searchParams, onQueryProductsHandler]);
 
   const onQueryProductsHandler = useCallback(
     debounce((q) => {

@@ -1,12 +1,12 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import Stack from "react-bootstrap/Stack";
 import styles from "./EditCategoryForm.module.scss";
-import { apiUrl } from "../../../appInfo";
 
 const EditCategoryForm = (props) => {
   const [imgSrc, setImgSrc] = useState("");
@@ -19,25 +19,28 @@ const EditCategoryForm = (props) => {
     isHidden: false,
   };
 
-  const onSubmit = useCallback((event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+  const onSubmit = useCallback(
+    (event) => {
+      const form = event.currentTarget;
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
 
-    setValidated(true);
+      setValidated(true);
 
-    if (form) {
-      if (form.title.value && form.description.value) {
-        if (props.category?.image || form.image.files.length !== 0) {
-          props.onSubmit(event);
-        } else {
-          console.info("category update/creation stopped");
+      if (form) {
+        if (form.title.value && form.description.value) {
+          if (props.category?.image || form.image.files.length !== 0) {
+            props.onSubmit(event);
+          } else {
+            console.info("category update/creation stopped");
+          }
         }
       }
-    }
-  }, []);
+    },
+    [props]
+  );
 
   const onImageSelect = useCallback(async (e) => {
     const files = e.target.files[0];
@@ -94,6 +97,16 @@ const EditCategoryForm = (props) => {
       </Stack>
     </Form>
   );
+};
+
+EditCategoryForm.propTypes = {
+  category: PropTypes.shape({
+    title: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    isHidden: PropTypes.bool.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default EditCategoryForm;

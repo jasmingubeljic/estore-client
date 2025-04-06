@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -19,22 +18,13 @@ const Footer = () => {
           <Col sm={12} lg={3}>
             <Stack>
               <h3 className="fs-6">
-                <Image
-                  src={logoImage}
-                  alt="eStore logo"
-                  width="90px"
-                  className="opacity-75"
-                />
+                <Image src={logoImage} alt="eStore logo" width="90px" className="opacity-75" />
               </h3>
             </Stack>
           </Col>
           <Col sm={12} lg={3}>
             <Stack>
-              <h3
-                className={`text-uppercase fs-6 text-info mt-4 mt-lg-0 ${styles["wide-tracking"]}`}
-              >
-                Useful links
-              </h3>
+              <h3 className={`text-uppercase fs-6 text-info mt-4 mt-lg-0 ${styles["wide-tracking"]}`}>Useful links</h3>
               <Stack direction="horizontal" gap="2" className="text-info">
                 <p className="m-0">Products</p>
               </Stack>
@@ -42,11 +32,7 @@ const Footer = () => {
           </Col>
           <Col sm={12} lg={3}>
             <Stack>
-              <h3
-                className={`text-uppercase fs-6 text-info mt-4 mt-lg-0 ${styles["wide-tracking"]}`}
-              >
-                Contact
-              </h3>
+              <h3 className={`text-uppercase fs-6 text-info mt-4 mt-lg-0 ${styles["wide-tracking"]}`}>Contact</h3>
               <Stack className="pt-1 gap-2">
                 <Stack direction="horizontal" gap="2" className="text-info">
                   <FaPhoneAlt />
@@ -65,11 +51,7 @@ const Footer = () => {
           </Col>
           <Col sm={12} lg={3}>
             <Stack>
-              <h3
-                className={`text-uppercase fs-6 text-info mt-4 mt-lg-0 ${styles["wide-tracking"]}`}
-              >
-                Follow Us
-              </h3>
+              <h3 className={`text-uppercase fs-6 text-info mt-4 mt-lg-0 ${styles["wide-tracking"]}`}>Follow Us</h3>
               <Stack className="pt-1">
                 <Stack direction="horizontal" gap="2" className="text-info">
                   <LiaFacebookF className="fs-5 text-info" />

@@ -5,7 +5,6 @@ import { prodDir } from "../appInfo";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import Badge from "react-bootstrap/Badge";
@@ -19,7 +18,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     getProductById(params.id, onGetProductSuccess, (err) => console.log(err));
-  }, []);
+  }, [params]);
 
   const onGetProductSuccess = (product) => {
     console.log("product: ", product);

@@ -2,21 +2,13 @@ import Placeholder from "react-bootstrap/Placeholder";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
-import Badge from "react-bootstrap/Badge";
-import { apiUrl } from "../../appInfo";
-import FormattedPrice from "../price/FormattedPrice";
-import TimeAgo from "react-timeago";
 import styles from "./ProductCard.module.scss";
 
 const ProductCard = () => {
   return (
     <Col>
       <Card /*border="info"*/ className="shadow-sm overflow-hidden">
-        <Placeholder
-          as={Card.Image}
-          animation="glow"
-          className={`${styles["image-sizing"]}`}
-        >
+        <Placeholder as={Card.Image} animation="glow" className={`${styles["image-sizing"]}`}>
           <Placeholder xs={12} className="h-100" />
         </Placeholder>
         <Card.Body className="p-2 pb-0">

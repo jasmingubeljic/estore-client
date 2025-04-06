@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { getProducts } from "../api/apiCalls";
 import Container from "react-bootstrap/Container";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import Row from "react-bootstrap/Row";
