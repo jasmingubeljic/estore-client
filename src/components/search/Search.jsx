@@ -25,14 +25,7 @@ const Search = (props) => {
 
   return (
     <InputGroup className={props.className}>
-      <Form.Control
-        placeholder="Search products..."
-        aria-label="Search products..."
-        aria-describedby="search1"
-        onChange={onChangeHandler}
-        method="POST"
-        ref={inputRef}
-      />
+      <Form.Control placeholder="Search products..." aria-label="Search products..." aria-describedby="search1" onChange={onChangeHandler} ref={inputRef} />
       <Button type="submit" variant="outline-info" id="search1" className="bg-white" onClick={clearSearchInputHandler}>
         <MdClear />
       </Button>

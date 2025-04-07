@@ -14,7 +14,7 @@ const EditProductForm = (props) => {
       <Form noValidate validated={validated} onSubmit={onSubmit} method="POST">
         <Form.Group className="mb-4" controlId="formProductTitle">
           <Form.Label>Product name</Form.Label>
-          <Form.Control size="lg" name="title" type="title" required defaultValue={product.title} maxLength="150" />
+          <Form.Control size="lg" name="title" type="title" required defaultValue={product.title} maxLength={150} />
         </Form.Group>
         <Image src={imgSrc} className={styles.imgPreview} />
         <Form.Group className="mb-4" controlId="formProductImage">
@@ -24,7 +24,7 @@ const EditProductForm = (props) => {
         </Form.Group>
         <Form.Group className="mb-4" controlId="formProductDescription">
           <Form.Label>Description</Form.Label>
-          <Form.Control name="description" as="textarea" defaultValue={product.description} style={{ height: "100px" }} maxLength="500" />
+          <Form.Control name="description" as="textarea" defaultValue={product.description} style={{ height: "100px" }} maxLength={500} />
         </Form.Group>
         <Form.Group className="mb-4" controlId="formProductPrice">
           <Form.Label>Price</Form.Label>

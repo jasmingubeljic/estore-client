@@ -6,12 +6,12 @@ import Stack from "react-bootstrap/Stack";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Image from "react-bootstrap/Image";
 import logoImage from "../../assets/images/logo-dark.svg";
-import { BiHomeAlt2, BiPlusCircle, BiLogInCircle, BiPackage, BiMenu } from "react-icons/bi";
+import { BiHomeAlt2, BiPlusCircle, BiLogInCircle, BiPackage } from "react-icons/bi";
 import Search from "../search/Search";
 import useNavigation from "../../hooks/useNavigation";
 
 const Navigation = () => {
-  const { token, show, handleClose, handleShow, navigateTo, tokenRemovalHandler } = useNavigation();
+  const { token, show, handleClose, navigateTo, tokenRemovalHandler } = useNavigation();
 
   return (
     <>
@@ -96,10 +96,10 @@ const Navigation = () => {
               <div className="">Login</div>
             </Link>
           )}
-          <Link onClick={handleShow} className="m-auto d-flex flex-column align-items-center py-2 text-decoration-none text-dark">
+          {/* <Link onClick={handleShow} className="m-auto d-flex flex-column align-items-center py-2 text-decoration-none text-dark">
             <BiMenu className="fs-4 text-dark" />
             Menu
-          </Link>
+          </Link> */}
         </Stack>
       </div>
     </>

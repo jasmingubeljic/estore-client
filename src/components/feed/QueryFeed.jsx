@@ -1,21 +1,20 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { queryProducts } from "../../api/apiCalls";
 import ProductCard from "../product/ProductCard";
 import Row from "react-bootstrap/Row";
 import { debounce } from "../../utils/misc";
 import ProductCardPlaceholderGroup from "../product/ProductCardPlaceholderGroup";
+import useFeed from "../../hooks/useFeed";
 
 const FeedExpanding = () => {
+  const { limit } = useFeed();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [fetching, setFetching] = useState(true);
 
-  useEffect(() => {
-    onQueryProductsHandler(searchParams.get("query"));
-  }, [searchParams, onQueryProductsHandler]);
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const onQueryProductsHandler = useCallback(
     debounce((q) => {
       if (q === null) navigate("/search");
@@ -35,6 +34,10 @@ const FeedExpanding = () => {
     }, 500),
     []
   );
+
+  useEffect(() => {
+    onQueryProductsHandler(searchParams.get("query"));
+  }, [searchParams, onQueryProductsHandler]);
 
   if (products.count > 0) {
     return (
